@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Placas 3D | Studio Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A0A0C;--line:rgba(255,255,255,.12);--muted:#A1A1AA;--k:.8}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:#fff;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 8%;border-bottom:1px solid var(--line)}
+header a{color:var(--muted);text-decoration:none;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;transition:color .3s}
+header a:hover{color:#fff}
+header a.brand{font-size:20px;font-weight:900;letter-spacing:3px;color:#fff}
+.intro{padding:72px 8% 8px;max-width:1100px}
+h1{font-size:clamp(32px,5vw,56px);font-weight:900;line-height:1.1;letter-spacing:1px;text-transform:uppercase}
+.intro p{margin-top:20px;color:var(--muted);font-size:14px;font-weight:500;letter-spacing:1px;text-transform:uppercase;line-height:1.7}
+.stage{display:flex;flex-wrap:wrap;justify-content:center;gap:88px 96px;padding:64px 4% 120px}
+.item{display:flex;flex-direction:column;align-items:center;gap:52px}
+.holder{position:relative;width:calc(560px*var(--k));height:calc(794px*var(--k));perspective:1800px;touch-action:pan-y;cursor:grab;user-select:none}
+.holder:active{cursor:grabbing}
+.shadow{position:absolute;left:8%;right:8%;bottom:-36px;height:30px;background:radial-gradient(ellipse at center,rgba(0,0,0,.8),transparent 70%);filter:blur(6px)}
+.obj{position:absolute;left:0;top:0;width:560px;height:794px;transform:scale(var(--k));transform-origin:0 0;transform-style:preserve-3d}
+.sway{position:absolute;inset:0;transform-style:preserve-3d;animation:sway 9s ease-in-out infinite}
+.item:nth-child(2) .sway{animation-delay:-4.5s}
+@keyframes sway{0%,100%{transform:rotateY(-14deg) translateY(0)}50%{transform:rotateY(14deg) translateY(-10px)}}
+.slab{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
+.front,.back{position:absolute;inset:0;backface-visibility:hidden}
+.front{transform:translateZ(8px)}
+.back{transform:rotateY(180deg) translateZ(8px);display:flex;align-items:center;justify-content:center;font:400 26px 'Cormorant Garamond',Georgia,serif;letter-spacing:.08em}
+.e{position:absolute}
+.er,.el{top:0;left:272px;width:16px;height:794px}
+.er{transform:rotateY(90deg) translateZ(280px)}.el{transform:rotateY(-90deg) translateZ(280px)}
+.et,.eb{left:0;top:389px;width:560px;height:16px}
+.et{transform:rotateX(90deg) translateZ(397px)}.eb{transform:rotateX(-90deg) translateZ(397px)}
+.k1 .e{background:linear-gradient(#8d7545,#c2a267)}.k1 .back{background:#0b0b0d;color:#C2A267}
+.k2 .e{background:#bdb7a7}.k2 .back{background:#dedad0;color:#7D6129}
+.pl{display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;padding:56px 52px 48px;font-family:'Jost',system-ui,sans-serif}
+.pl::before{content:"";position:absolute;inset:20px;border:1px solid var(--ac);opacity:.65}
+.pl::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.12) 0%,rgba(255,255,255,0) 35%,rgba(255,255,255,0) 65%,rgba(255,255,255,.07) 100%)}
+.p1{background:#050505;color:#EFEDE8;--ac:#C2A267}
+.p2{background:#EFEDE8;color:#050505;--ac:#7D6129}
+.pl .nm{font:400 24px 'Cormorant Garamond',Georgia,serif;letter-spacing:.06em;color:var(--ac)}
+.pl .mid{display:flex;flex-direction:column;align-items:center;gap:18px}
+.pl h2{font:300 60px/1 'Cormorant Garamond',Georgia,serif;letter-spacing:-.01em}
+.pl .s{max-width:340px;font-size:18px;line-height:1.5;font-weight:300}
+.p1 .s{opacity:.85}.p2 .s{color:#3d3a34}
+.pl .n{max-width:360px;font-size:16px;line-height:1.5}
+.p1 .n{opacity:.75}.p2 .n{color:#4a463e}
+.qr{padding:22px;outline:1px solid var(--ac);outline-offset:10px}
+.p1 .qr{background:#EFEDE8}.p2 .qr{background:#050505}
+.qr svg{display:block;background:#EFEDE8}
+.ig{display:flex;flex-direction:column;align-items:center;gap:12px}
+.cap{display:flex;flex-direction:column;gap:8px;text-align:center;max-width:420px}
+.cap b{font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase}
+.cap span{color:var(--muted);font-size:13px;line-height:1.6;font-weight:500}
+@media(prefers-reduced-motion:reduce){.sway{animation:none}}
+</style>
+</head>
+<body>
+<header>
+  <a href="../index.html" class="brand">STUDIO DIGITAL</a>
+  <a href="../index.html">← Voltar ao portfólio</a>
+</header>
+
+<section class="intro">
+  <h1>Placas com QR code</h1>
+  <p>Arraste para girar cada placa em 3D. Clique duas vezes para voltar à posição inicial.</p>
+</section>
+
+<main class="stage">
+  <div class="item">
+    <div class="holder" role="img" aria-label="Placa 1 em 3D: QR code do site da loja">
+      <div class="shadow"></div>
+      <div class="obj"><div class="sway"><div class="slab k1">
+        <div class="front pl p1">
+          <div class="nm">[NOME DA LOJA]</div>
+          <div class="mid"><h2>Conheça nossa loja</h2><p class="s">Aponte a câmera do celular para o QR code e veja serviços, valores e horários.</p></div>
+          <div class="qr"></div>
+          <p class="n">Lojista: escaneie uma vez para cadastrar sua loja e ativar esta placa.</p>
+        </div>
+        <div class="back">[NOME DA LOJA]</div>
+        <div class="e er"></div><div class="e el"></div><div class="e et"></div><div class="e eb"></div>
+      </div></div></div>
+    </div>
+    <div class="cap"><b>Placa 1 · Site da loja</b><span>Primeira leitura abre o cadastro. Depois, leva direto ao site cadastrado.</span></div>
+  </div>
+
+  <div class="item">
+    <div class="holder" role="img" aria-label="Placa 2 em 3D: QR code do Instagram da loja">
+      <div class="shadow"></div>
+      <div class="obj"><div class="sway"><div class="slab k2">
+        <div class="front pl p2">
+          <div class="ig">
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#7D6129" stroke-width="1.3"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="#7D6129"/></svg>
+            <div class="nm" style="font-size:26px">@suaLoja</div>
+          </div>
+          <div class="mid"><h2>Siga a gente no Instagram</h2><p class="s">Escaneie o QR code e acompanhe nossos trabalhos e novidades.</p></div>
+          <div class="qr"></div>
+          <p class="n">Lojista: escaneie uma vez para cadastrar o Instagram da sua loja e ativar esta placa.</p>
+        </div>
+        <div class="back">@suaLoja</div>
+        <div class="e er"></div><div class="e el"></div><div class="e et"></div><div class="e eb"></div>
+      </div></div></div>
+    </div>
+    <div class="cap"><b>Placa 2 · Instagram da loja</b><span>Primeira leitura abre o cadastro. Depois, leva direto ao Instagram cadastrado.</span></div>
+  </div>
+</main>
+
+<script>
+/* QR de demonstração (espaço reservado). Troque pelo QR real de cada placa. */
+const QR='<svg role="img" aria-label="Espaço reservado para o QR code" viewBox="0 0 100 100" width="196" height="196"><g fill="none" stroke="#050505" stroke-width="5"><rect x="3.5" y="3.5" width="25" height="25"/><rect x="71.5" y="3.5" width="25" height="25"/><rect x="3.5" y="71.5" width="25" height="25"/></g><g fill="#050505"><rect x="11" y="11" width="10" height="10"/><rect x="79" y="11" width="10" height="10"/><rect x="11" y="79" width="10" height="10"/><rect x="38" y="6" width="8" height="8"/><rect x="52" y="14" width="8" height="8"/><rect x="38" y="38" width="12" height="12"/><rect x="58" y="44" width="8" height="8"/><rect x="74" y="42" width="10" height="10"/><rect x="40" y="60" width="8" height="8"/><rect x="58" y="66" width="12" height="12"/><rect x="78" y="70" width="8" height="8"/><rect x="40" y="82" width="10" height="10"/><rect x="80" y="86" width="8" height="8"/><rect x="6" y="40" width="8" height="8"/><rect x="20" y="46" width="8" height="8"/></g></svg>';
+document.querySelectorAll('.qr').forEach(e=>e.innerHTML=QR);
+
+const fit=()=>document.documentElement.style.setProperty('--k',Math.min(.8,(innerWidth-48)/560).toFixed(3));
+addEventListener('resize',fit);fit();
+
+document.querySelectorAll('.holder').forEach(h=>{
+  const s=h.querySelector('.slab');let x=0,y=0,rx=0,ry=0,d=false;
+  const put=()=>{s.style.setProperty('--rx',rx+'deg');s.style.setProperty('--ry',ry+'deg')};
+  h.addEventListener('pointerdown',e=>{d=true;x=e.clientX;y=e.clientY;h.setPointerCapture(e.pointerId)});
+  h.addEventListener('pointermove',e=>{if(!d)return;ry+=(e.clientX-x)*.5;rx=Math.max(-40,Math.min(40,rx-(e.clientY-y)*.3));x=e.clientX;y=e.clientY;put()});
+  ['pointerup','pointercancel'].forEach(t=>h.addEventListener(t,()=>{d=false}));
+  h.addEventListener('dblclick',()=>{rx=0;ry=0;put()});
+});
+</script>
+</body>
+</html>

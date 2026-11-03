@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estética Aut | Estética Automotiva no Meireles, Fortaleza: PPF e Vitrificação</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#ffffff',
+                            card: '#f9fafb',
+                            border: '#e5e7eb',
+                            accent: '#000000',
+                            accentHover: '#1f2937',
+                            whatsapp: '#128c7e'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #0f172a;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        .glass-panel-light {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+        }
+        .glow-effect-black {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-brand-bg text-gray-900 antialiased selection:bg-black selection:text-white">
+
+    <!-- Header Fixo Light -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3">
+                <span class="text-2xl font-black tracking-widest text-black uppercase">ESTÉTICA AUT</span>
+                <span class="hidden sm:inline-block text-xs bg-gray-100 text-gray-800 px-2.5 py-1 rounded-full uppercase tracking-wider font-semibold border border-gray-300">Meireles</span>
+            </a>
+
+            <!-- Nav Desktop -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-gray-700">
+                <a href="#servicos" class="hover:text-black transition-colors">Problemas & Diagnósticos</a>
+                <a href="#procedimentos" class="hover:text-black transition-colors">Procedimentos</a>
+                <a href="#galeria" class="hover:text-black transition-colors">Galeria de Resultados</a>
+                <a href="#guias" class="hover:text-black transition-colors">PPF vs Vitrificação</a>
+                <a href="#linhas" class="hover:text-black transition-colors">Linhas de Atendimento</a>
+            </nav>
+
+            <!-- CTA Actions -->
+            <div class="flex items-center gap-4">
+                <button onclick="toggleModal(true)" class="hidden sm:flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-black font-semibold text-sm px-4 py-2.5 rounded-lg border border-gray-300 transition-all">
+                    <span>Monte seu orçamento</span>
+                </button>
+                <a href="https://wa.me/5585996440152" target="_blank" class="flex items-center gap-2 bg-black hover:bg-gray-800 text-white font-semibold text-sm px-4 py-2.5 rounded-lg transition-all shadow-md">
+                    <i data-lucide="message-square" class="w-4 h-4"></i>
+                    <span>WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section Light com Imagem de Fundo de Carro de Luxo sob LED -->
+    <section class="relative pt-32 pb-24 md:pt-44 md:pb-36 overflow-hidden border-b border-gray-200">
+        <!-- Imagem de fundo de Supercarro de Luxo em Box de Estética com Luzes de Inspeção -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1920&q=80" alt="Supercarro em Estética Automotiva de Luxo" class="w-full h-full object-cover opacity-20">
+            <div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/60"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl">
+                <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black text-white text-xs font-semibold uppercase tracking-wider mb-6">
+                    Estúdio de Estética Automotiva • Meireles, Fortaleza
+                </span>
+                <h1 class="text-4xl md:text-6xl font-black text-black tracking-tight leading-tight mb-6">
+                    Estética automotiva <span class="underline decoration-black underline-offset-8">sem meio-termo</span> em Fortaleza
+                </h1>
+                <p class="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed font-medium">
+                    PPF, polimento técnico, vitrificação com proteção de até 5 anos, pintura e higienização interna, em box fechado e climatizado, sob luz de inspeção.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 mb-14">
+                    <button onclick="toggleModal(true)" class="flex items-center justify-center gap-3 bg-black hover:bg-gray-800 text-white font-bold text-base px-8 py-4 rounded-xl transition-all shadow-lg glow-effect-black">
+                        <span>Monte seu orçamento</span>
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </button>
+                    <a href="https://wa.me/5585996440152" target="_blank" class="flex items-center justify-center gap-3 bg-white hover:bg-gray-100 text-black font-bold text-base px-8 py-4 rounded-xl border-2 border-black transition-all shadow-sm">
+                        <i data-lucide="phone-call" class="w-5 h-5 text-black"></i>
+                        <span>Falar no WhatsApp</span>
+                    </a>
+                </div>
+
+                <!-- Differentials Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 border-t border-gray-300 pt-8">
+                    <div>
+                        <div class="text-2xl font-black text-black mb-1">Até 5 anos</div>
+                        <div class="text-xs font-semibold text-gray-600">de proteção na pintura</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-black text-black mb-1">Box Climatizado</div>
+                        <div class="text-xs font-semibold text-gray-600">fechado, sem poeira nem vento</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-black text-black mb-1">Luz de Inspeção</div>
+                        <div class="text-xs font-semibold text-gray-600">teia de aranha não passa batido</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-black text-black mb-1">Carros e Motos</div>
+                        <div class="text-xs font-semibold text-gray-600">do 0 km ao clássico</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- O que está incomodando no carro? -->
+    <section id="servicos" class="py-20 bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <span class="text-black text-xs font-black tracking-widest uppercase bg-gray-100 px-3 py-1 rounded">Diagnósticos</span>
+                <h2 class="text-3xl md:text-4xl font-black text-black mt-3">O que está incomodando no carro?</h2>
+                <p class="text-gray-600 mt-2 font-medium">Comece pelo problema. A indicação final sai depois de ver o carro no estúdio.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="glass-panel-light p-6 rounded-2xl hover:border-black transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="p-3 bg-black text-white w-fit rounded-xl mb-4">
+                            <i data-lucide="shield" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-black mb-2">Proteger a frente do pedrisco</h3>
+                        <p class="text-sm text-gray-600 mb-6">Película de poliuretano no kit frontal ou no carro inteiro.</p>
+                    </div>
+                    <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+                        <span class="text-xs font-black text-black uppercase tracking-wider">PPF</span>
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-black group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-panel-light p-6 rounded-2xl hover:border-black transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="p-3 bg-black text-white w-fit rounded-xl mb-4">
+                            <i data-lucide="sparkles" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-black mb-2">Tirar as teias de aranha da pintura</h3>
+                        <p class="text-sm text-gray-600 mb-6">Polimento técnico corretivo e proteção cerâmica de até 5 anos.</p>
+                    </div>
+                    <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+                        <span class="text-xs font-black text-black uppercase tracking-wider">Polimento</span>
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-black group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-panel-light p-6 rounded-2xl hover:border-black transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="p-3 bg-black text-white w-fit rounded-xl mb-4">
+                            <i data-lucide="wind" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-black mb-2">Acabar com o cheiro do interior</h3>
+                        <p class="text-sm text-gray-600 mb-6">Higienização detalhada, extração de sujeira e oxi-sanitização.</p>
+                    </div>
+                    <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+                        <span class="text-xs font-black text-black uppercase tracking-wider">Higienização</span>
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-black group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="glass-panel-light p-6 rounded-2xl hover:border-black transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="p-3 bg-black text-white w-fit rounded-xl mb-4">
+                            <i data-lucide="droplet" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-black mb-2">Lavar sem marcar a pintura</h3>
+                        <p class="text-sm text-gray-600 mb-6">Lavagem técnica detalhada e manutenção de superfícies vitrificadas.</p>
+                    </div>
+                    <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+                        <span class="text-xs font-black text-black uppercase tracking-wider">Lavagem</span>
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-black group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Todos os Procedimentos de Estética Automotiva -->
+    <section id="procedimentos" class="py-20 bg-gray-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <span class="text-black text-xs font-black tracking-widest uppercase bg-white border border-gray-300 px-3 py-1 rounded">Catálogo Completo</span>
+                <h2 class="text-3xl md:text-4xl font-black text-black mt-3">Procedimentos de Estética Automotiva</h2>
+                <p class="text-gray-600 mt-2 font-medium">Conheça detalhadamente as nossas soluções em correção, proteção e detalhamento.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Procedimento 1 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 hover:border-black transition-all shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-black text-black">Aplicação de PPF</h3>
+                        <i data-lucide="shield-check" class="w-6 h-6 text-black"></i>
+                    </div>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                        Película TPU auto-regenerativa contra pedriscos da pista, riscos, excrementos de pássaros, radiação UV e contaminação industrial.
+                    </p>
+                    <span class="inline-block text-xs font-bold uppercase tracking-wider bg-black text-white px-3 py-1 rounded">Proteção Física Total</span>
+                </div>
+
+                <!-- Procedimento 2 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 hover:border-black transition-all shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-black text-black">Vitrificação Cerâmica</h3>
+                        <i data-lucide="sparkle" class="w-6 h-6 text-black"></i>
+                    </div>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                        Revestimento nanocerâmico de sílica de alta rigidez. Forma uma camada protetora com super-hidrofobia e brilho espelhado profundo.
+                    </p>
+                    <span class="inline-block text-xs font-bold uppercase tracking-wider bg-black text-white px-3 py-1 rounded">1 a 5 Anos de Proteção</span>
+                </div>
+
+                <!-- Procedimento 3 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 hover:border-black transition-all shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-black text-black">Polimento Técnico Corretivo</h3>
+                        <i data-lucide="disc" class="w-6 h-6 text-black"></i>
+                    </div>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                        Remoção de microrriscos, teias de aranha (swirls) e manchas de lavagens inadequadas, restaurando a clareza e transparência do verniz.
+                    </p>
+                    <span class="inline-block text-xs font-bold uppercase tracking-wider bg-black text-white px-3 py-1 rounded">Correção de Verniz</span>
+                </div>
+
+                <!-- Procedimento 4 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 hover:border-black transition-all shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-black text-black">Higienização e Detalhamento Interno</h3>
+                        <span class="text-xl">✨</span>
+                    </div>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                        Limpeza profunda de bancos em couro ou tecido, carpetes, forros de porta e painel através da extração a quente e bactericidas profissionais.
+                    </p>
+                    <span class="inline-block text-xs font-bold uppercase tracking-wider bg-black text-white px-3 py-1 rounded">Saúde & Conforto</span>
+                </div>
+
+                <!-- Procedimento 5 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 hover:border-black transition-all shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-black text-black">Micro Pintura e Martelinho</h3>
+                        <i data-lucide="wrench" class="w-6 h-6 text-black"></i>
+                    </div>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                        Reparo localizado de lascas, riscos pontuais e pequenos amassados mantendo a tinta original de fábrica sem necessidade de repintar a peça inteira.
+                    </p>
+                    <span class="inline-block text-xs font-bold uppercase tracking-wider bg-black text-white px-3 py-1 rounded">Preservação Original</span>
+                </div>
+
+                <!-- Procedimento 6 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 hover:border-black transition-all shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-black text-black">Detalhamento de Cofre & Motor</h3>
+                        <i data-lucide="cpu" class="w-6 h-6 text-black"></i>
+                    </div>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                        Limpeza técnica minuciosa com dielétrico e vapor, seguidos do condicionamento das mangueiras e plásticos com proteção técnica contra ressecamento.
+                    </p>
+                    <span class="inline-block text-xs font-bold uppercase tracking-wider bg-black text-white px-3 py-1 rounded">Estética de Motor</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria de Fotos dos Serviços -->
+    <section id="galeria" class="py-20 bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <span class="text-black text-xs font-black tracking-widest uppercase bg-gray-100 px-3 py-1 rounded">Resultados Reais</span>
+                <h2 class="text-3xl md:text-4xl font-black text-black mt-3">Fotos dos Nossos Atendimentos</h2>
+                <p class="text-gray-600 mt-2 font-medium">Confira o alto nível de acabamento alcançado em nosso estúdio fechado e climatizado no Meireles.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Foto 1 -->
+                <div class="group relative overflow-hidden rounded-2xl border border-gray-200 shadow-md">
+                    <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=800&q=80" alt="Aplicação de PPF Estética Aut" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+                        <span class="text-xs font-bold text-white uppercase tracking-wider">Estúdio Meireles</span>
+                        <h4 class="text-lg font-black text-white">Aplicação de PPF Integral</h4>
+                    </div>
+                </div>
+
+                <!-- Foto 2 -->
+                <div class="group relative overflow-hidden rounded-2xl border border-gray-200 shadow-md">
+                    <img src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80" alt="Polimento Técnico e Correção de Pintura" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+                        <span class="text-xs font-bold text-white uppercase tracking-wider">Acabamento Espelhado</span>
+                        <h4 class="text-lg font-black text-white">Polimento Técnico Corretivo</h4>
+                    </div>
+                </div>
+
+                <!-- Foto 3 -->
+                <div class="group relative overflow-hidden rounded-2xl border border-gray-200 shadow-md">
+                    <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=800&q=80" alt="Vitrificação de Pintura" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+                        <span class="text-xs font-bold text-white uppercase tracking-wider">Proteção Cerâmica</span>
+                        <h4 class="text-lg font-black text-white">Vitrificação Nanocerâmica 5 Anos</h4>
+                    </div>
+                </div>
+
+                <!-- Foto 4 -->
+                <div class="group relative overflow-hidden rounded-2xl border border-gray-200 shadow-md">
+                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" alt="Lavagem Técnica Detalhada" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+                        <span class="text-xs font-bold text-white uppercase tracking-wider">Cuidado Detalhado</span>
+                        <h4 class="text-lg font-black text-white">Lavagem Técnica Pré-Tratamento</h4>
+                    </div>
+                </div>
+
+                <!-- Foto 5 -->
+                <div class="group relative overflow-hidden rounded-2xl border border-gray-200 shadow-md">
+                    <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80" alt="Higienização Interna Completa" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+                        <span class="text-xs font-bold text-white uppercase tracking-wider">Detalhamento Interno</span>
+                        <h4 class="text-lg font-black text-white">Higienização e Tratamento de Couro</h4>
+                    </div>
+                </div>
+
+                <!-- Foto 6 -->
+                <div class="group relative overflow-hidden rounded-2xl border border-gray-200 shadow-md">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80" alt="Entrega de Veículo Finalizado" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+                        <span class="text-xs font-bold text-white uppercase tracking-wider">Estética Aut Extreme</span>
+                        <h4 class="text-lg font-black text-white">Entrega Sob Luz de Inspeção</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guia Rápido: PPF ou Vitrificação? -->
+    <section id="guias" class="py-20 bg-gray-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mb-12">
+                <span class="text-black text-xs font-black tracking-widest uppercase bg-white border border-gray-300 px-3 py-1 rounded">Comparativo</span>
+                <h2 class="text-3xl md:text-4xl font-black text-black mt-3">PPF ou vitrificação?</h2>
+                <p class="text-gray-700 mt-4 leading-relaxed font-medium">
+                    Vitrificação cuida do brilho e facilita a lavagem. Pedrisco na estrada, só o PPF segura. Muita gente acaba fazendo a dupla: PPF na frente e vitrificação no restante.
+                </p>
+            </div>
+
+            <!-- Tabela Comparativa Versão Light -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse bg-white rounded-2xl overflow-hidden border-2 border-gray-200 shadow-sm">
+                    <thead>
+                        <tr class="border-b-2 border-gray-200 bg-gray-100">
+                            <th class="p-4 md:p-6 text-sm font-black text-black">Critério</th>
+                            <th class="p-4 md:p-6 text-sm font-black text-black">PPF (Paint Protection Film)</th>
+                            <th class="p-4 md:p-6 text-sm font-black text-black">Vitrificação Cerâmica</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200 text-sm font-medium">
+                        <tr>
+                            <td class="p-4 md:p-6 font-bold text-black bg-gray-50">Protege contra</td>
+                            <td class="p-4 md:p-6 text-gray-800">Pedrisco, risco leve com auto-regeneração, manchas de insetos, sol e maresia.</td>
+                            <td class="p-4 md:p-6 text-gray-800">Sol, contaminação, fezes de pássaros e microrrisco de lavagem. Não segura pedrisco.</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 md:p-6 font-bold text-black bg-gray-50">No Estúdio</td>
+                            <td class="p-4 md:p-6 text-gray-800">Garantia e tratamento de regeneração da película por até 2 anos.</td>
+                            <td class="p-4 md:p-6 text-gray-800">Proteção cerâmica com durabilidade garantida de 1, 3 ou 5 anos.</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 md:p-6 font-bold text-black bg-gray-50">Ideal para</td>
+                            <td class="p-4 md:p-6 text-gray-800">Frente de carro de estrada, veículos 0 km, premium e esportivos.</td>
+                            <td class="p-4 md:p-6 text-gray-800">Pintura recém-corrigida e para quem busca facilidade de limpeza diária.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Linhas de Atendimento -->
+    <section id="linhas" class="py-20 bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <span class="text-black text-xs font-black tracking-widest uppercase bg-gray-100 px-3 py-1 rounded">Pacotes</span>
+                <h2 class="text-3xl md:text-4xl font-black text-black mt-3">Do avulso ao tudo ou tudo</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Linha 01 -->
+                <div class="bg-white p-6 rounded-2xl flex flex-col justify-between border-2 border-gray-200 hover:border-black transition-all shadow-sm">
+                    <div>
+                        <span class="text-xs font-mono font-bold text-gray-400">01</span>
+                        <h3 class="text-xl font-black text-black mt-1 mb-2">Linha Standard</h3>
+                        <p class="text-sm font-bold text-black mb-4">Monte do seu jeito</p>
+                        <p class="text-sm text-gray-600 mb-6 font-medium">Tratamentos avulsos conforme o carro pede. Lavagens técnicas, correção de pintura, faróis, rodas e motor.</p>
+                    </div>
+                    <button onclick="toggleModal(true)" class="w-full text-center py-3 bg-gray-100 hover:bg-black hover:text-white text-sm font-bold text-black rounded-xl transition-all border border-gray-300">
+                        Ver tratamentos
+                    </button>
+                </div>
+
+                <!-- Linha 02 -->
+                <div class="bg-white p-6 rounded-2xl flex flex-col justify-between border-2 border-gray-200 hover:border-black transition-all shadow-sm">
+                    <div>
+                        <span class="text-xs font-mono font-bold text-gray-400">02</span>
+                        <h3 class="text-xl font-black text-black mt-1 mb-2">Linha Pack</h3>
+                        <p class="text-sm font-bold text-black mb-4">A combinação perfeita</p>
+                        <p class="text-sm text-gray-600 mb-6 font-medium">Três pacotes completos com correção de pintura e revestimento nanocerâmico de 1 a 5 anos.</p>
+                    </div>
+                    <button onclick="toggleModal(true)" class="w-full text-center py-3 bg-gray-100 hover:bg-black hover:text-white text-sm font-bold text-black rounded-xl transition-all border border-gray-300">
+                        Ver pacotes
+                    </button>
+                </div>
+
+                <!-- Linha 03 -->
+                <div class="bg-white p-6 rounded-2xl flex flex-col justify-between border-2 border-gray-200 hover:border-black transition-all shadow-sm">
+                    <div>
+                        <span class="text-xs font-mono font-bold text-gray-400">03</span>
+                        <h3 class="text-xl font-black text-black mt-1 mb-2">Linha PPF</h3>
+                        <p class="text-sm font-bold text-black mb-4">Proteção máxima</p>
+                        <p class="text-sm text-gray-600 mb-6 font-medium">Película de poliuretano que leva o pedrisco no lugar do verniz nas áreas que você selecionar.</p>
+                    </div>
+                    <button onclick="toggleModal(true)" class="w-full text-center py-3 bg-gray-100 hover:bg-black hover:text-white text-sm font-bold text-black rounded-xl transition-all border border-gray-300">
+                        Ver películas
+                    </button>
+                </div>
+
+                <!-- Linha 04 -->
+                <div class="bg-white p-6 rounded-2xl flex flex-col justify-between border-2 border-black shadow-md">
+                    <div>
+                        <span class="text-xs font-mono font-bold text-gray-400">04</span>
+                        <h3 class="text-xl font-black text-black mt-1 mb-2">Linha Supreme</h3>
+                        <p class="text-sm font-bold text-black mb-4">Estética Aut Extreme</p>
+                        <p class="text-sm text-gray-600 mb-6 font-medium">Interior, motor, vidros, rodas, chassi, correção total e revestimento cerâmico em todas as superfícies.</p>
+                    </div>
+                    <button onclick="toggleModal(true)" class="w-full text-center py-3 bg-black hover:bg-gray-800 text-sm font-bold text-white rounded-xl transition-all shadow-md">
+                        Conhecer Extreme
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Form de Orçamento Light -->
+    <div id="modal-orcamento" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white w-full max-w-lg rounded-2xl p-6 sm:p-8 border-2 border-black relative shadow-2xl">
+            <button onclick="toggleModal(false)" class="absolute top-4 right-4 text-gray-600 hover:text-black">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <h3 class="text-2xl font-black text-black mb-1">Monte seu orçamento</h3>
+            <p class="text-xs text-gray-600 mb-6 font-medium">Conte sobre o seu carro e receba a indicação no WhatsApp.</p>
+
+            <form id="form-orcamento" onsubmit="sendWhatsApp(event)" class="space-y-4 text-left">
+                <div>
+                    <label class="block text-xs font-black text-black uppercase mb-1">Seu Nome</label>
+                    <input type="text" id="nome" required placeholder="Digite seu nome" class="w-full bg-gray-50 border-2 border-gray-200 rounded-lg px-4 py-2.5 text-sm text-black font-semibold focus:outline-none focus:border-black">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-black text-black uppercase mb-1">Carro (Marca, Modelo e Ano)</label>
+                    <input type="text" id="veiculo" required placeholder="Ex: Porsche Macan 2024" class="w-full bg-gray-50 border-2 border-gray-200 rounded-lg px-4 py-2.5 text-sm text-black font-semibold focus:outline-none focus:border-black">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-black text-black uppercase mb-1">Porte do Veículo</label>
+                    <select id="porte" class="w-full bg-gray-50 border-2 border-gray-200 rounded-lg px-4 py-2.5 text-sm text-black font-semibold focus:outline-none focus:border-black">
+                        <option value="Hatch">Hatch</option>
+                        <option value="Sedã">Sedã</option>
+                        <option value="SUV">SUV</option>
+                        <option value="Picape">Picape</option>
+                        <option value="Esportivo / Cupê">Esportivo / Cupê</option>
+                        <option value="Moto">Moto</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-black text-black uppercase mb-1">O que você procura?</label>
+                    <div class="grid grid-cols-2 gap-2 text-xs font-bold text-gray-800">
+                        <label class="flex items-center gap-2 bg-gray-50 p-2 rounded border border-gray-200">
+                            <input type="checkbox" value="PPF" class="opcao-servico accent-black"> PPF
+                        </label>
+                        <label class="flex items-center gap-2 bg-gray-50 p-2 rounded border border-gray-200">
+                            <input type="checkbox" value="Vitrificação" class="opcao-servico accent-black"> Vitrificação
+                        </label>
+                        <label class="flex items-center gap-2 bg-gray-50 p-2 rounded border border-gray-200">
+                            <input type="checkbox" value="Polimento" class="opcao-servico accent-black"> Polimento
+                        </label>
+                        <label class="flex items-center gap-2 bg-gray-50 p-2 rounded border border-gray-200">
+                            <input type="checkbox" value="Higienização" class="opcao-servico accent-black"> Higienização
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-black hover:bg-gray-800 text-white font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 mt-6 shadow-lg">
+                    <i data-lucide="message-square" class="w-5 h-5"></i>
+                    <span>Enviar para o WhatsApp</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer Light com endereço no Meireles -->
+    <footer class="bg-gray-100 border-t border-gray-200 py-12 text-sm text-gray-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+                <p class="font-black text-black uppercase tracking-wider">ESTÉTICA AUT</p>
+                <p class="text-xs font-medium mt-1">Rua Desembargador Moreira, 1200 - Meireles, Fortaleza - CE</p>
+            </div>
+            <p class="text-xs font-medium">© 2026 Estética Aut. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        function toggleModal(show) {
+            const modal = document.getElementById('modal-orcamento');
+            if (show) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        function sendWhatsApp(e) {
+            e.preventDefault();
+            const nome = document.getElementById('nome').value;
+            const veiculo = document.getElementById('veiculo').value;
+            const porte = document.getElementById('porte').value;
+            
+            const checkboxes = document.querySelectorAll('.opcao-servico:checked');
+            let servicos = [];
+            checkboxes.forEach(cb => servicos.push(cb.value));
+
+            const textoServicos = servicos.length > 0 ? servicos.join(', ') : 'Avaliação Geral';
+
+            const mensagem = `Olá, vim pelo site da Estética Aut (Meireles)!\n\n` +
+                             `*Nome:* ${nome}\n` +
+                             `*Veículo:* ${veiculo}\n` +
+                             `*Porte:* ${porte}\n` +
+                             `*Interesse:* ${textoServicos}`;
+
+            const url = `https://wa.me/5585996440152?text=${encodeURIComponent(mensagem)}`;
+            window.open(url, '_blank');
+            toggleModal(false);
+        }
+    </script>
+</body>
+</html>

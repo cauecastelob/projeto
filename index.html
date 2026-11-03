@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portifólio Digital | Portfólio de Projetos</title>
+
+  <!-- Google Fonts: Inter para máxima legibilidade e visual marcante -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: #0A0A0C;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --border-subtle: rgba(255, 255, 255, 0.12);
+      --border-hover: rgba(255, 255, 255, 0.5);
+      --text-white: #FFFFFF;
+      --text-muted: #A1A1AA;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-white);
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Header Styling com Efeito Vidro */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 50;
+      padding: 24px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .header-contact {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .header-contact a {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .header-contact a:hover {
+      color: var(--text-white);
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: var(--text-white);
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .brand span {
+      color: var(--text-white);
+      opacity: 0.7;
+    }
+
+    .header-tag {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-white);
+      padding: 8px 16px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 99px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 180px 8% 80px;
+      max-width: 1100px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-white);
+      margin-bottom: 24px;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--text-white);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--text-white);
+    }
+
+    /* Layout para alinhar a foto ao lado do título em destaque */
+    .hero-title-container {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .hero-avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 2px solid var(--border-subtle);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 255, 255, 0.15);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .hero-avatar:hover {
+      transform: scale(1.05);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 5.5vw, 64px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-white);
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 600px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Projects Grid */
+    .projects {
+      padding: 40px 8% 120px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-white);
+      margin-bottom: 48px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border-subtle);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 32px;
+    }
+
+    /* Cards em Vidro Profissional (Glassmorphism Avançado) */
+    .card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.06);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 255, 255, 0.15);
+    }
+
+    .preview {
+      height: 200px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.6) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      position: relative;
+      border-bottom: 1px solid var(--border-subtle);
+      overflow: hidden;
+    }
+
+    .preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .card:hover .preview img {
+      transform: scale(1.08);
+    }
+
+    .preview-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.2) 60%, transparent 100%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 16px;
+    }
+
+    .preview::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .card:hover .preview::before {
+      opacity: 1;
+    }
+
+    .artwork-icon {
+      width: 50px;
+      height: 50px;
+      stroke: var(--text-white);
+      stroke-width: 1.5;
+      fill: none;
+      z-index: 1;
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover .artwork-icon {
+      transform: scale(1.1);
+    }
+
+    .preview-tag {
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: var(--text-white);
+      text-transform: uppercase;
+      z-index: 3;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    }
+
+    .content {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+
+    .content-header h3 {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      color: var(--text-white);
+    }
+
+    .content-header p {
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.6;
+      font-weight: 500;
+      min-height: 42px;
+    }
+
+    .card-action {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 14px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-white);
+      text-decoration: none;
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover .btn-link {
+      background: var(--text-white);
+      color: #0A0A0C;
+      border-color: var(--text-white);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-link svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover .btn-link svg {
+      transform: translateX(4px);
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 8%;
+      border-top: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      background: rgba(10, 10, 12, 0.9);
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 18px 6%;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .header-left {
+        flex-direction: column;
+        gap: 8px;
+      }
+      .hero {
+        padding: 140px 6% 60px;
+      }
+      .hero-title-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .hero-avatar {
+        width: 80px;
+        height: 80px;
+      }
+      .projects {
+        padding: 20px 6% 80px;
+      }
+      footer {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="header-left">
+      <a href="#" class="brand">STUDIO <span>DIGITAL</span></a>
+      <div class="header-contact">
+        <a href="https://wa.me/5585987453895" target="_blank">(85) 98745-3895</a>
+        <a href="https://instagram.com/cauecastelob" target="_blank">@cauecastelob</a>
+      </div>
+    </div>
+    <div class="header-tag">PORTFÓLIO 2026</div>
+  </header>
+
+  <section class="hero">
+    <div class="badge">
+      <span class="badge-dot"></span>
+      <span>SOLUÇÕES DIGITAIS DE ALTO IMPACTO</span>
+    </div>
+
+    <div class="hero-title-container">
+      <img src="foto.jpeg" alt="Cauê Castelo Branco" class="hero-avatar">
+      <h1>SEU NEGÓCIO MERECE UMA PRESENÇA DIGITAL À ALTURA.</h1>
+    </div>
+
+    <p>
+      EXPLORE NOSSOS PROJETOS DEMONSTRATIVOS E DESCUBRA COMO PODEMOS TRANSFORMAR A APRESENTAÇÃO DA SUA EMPRESA NA INTERNET.
+    </p>
+  </section>
+
+  <section class="projects">
+    <h2 class="section-title">PROJETOS DEMONSTRATIVOS</h2>
+
+    <div class="grid">
+
+      <!-- Projeto 1: Auto Detail (Foto Real de Polimento) -->
+      <article class="card">
+        <div class="preview">
+          <img src="Captura de tela 2026-11-03 023041.png" alt="Estética Automotiva - Polimento">
+          <div class="preview-overlay">
+            <span class="preview-tag">AUTO DETAIL</span>
+          </div>
+        </div>
+        <div class="content">
+          <div class="content-header">
+            <h3>Estética Automotiva</h3>
+            <p>Apresentação de serviços automotivos e identidade profissional.</p>
+          </div>
+          <div class="card-action">
+            <a href="auto.html" target="_blank" class="btn-link">
+              <span>VISUALIZAR SITE</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Projeto 2: Barber Studio (Com a Foto do Emblema Barber Shop) -->
+      <article class="card">
+        <div class="preview">
+          <img src="Captura de tela 2026-11-03 024140.png" alt="J Souza Barbearia - Emblema Barber Shop">
+          <div class="preview-overlay">
+            <span class="preview-tag">BARBER STUDIO</span>
+          </div>
+        </div>
+        <div class="content">
+          <div class="content-header">
+            <h3>Barbearia</h3>
+            <p>Modelo premium para barbearias e profissionais da beleza.</p>
+          </div>
+          <div class="card-action">
+            <a href="barba.html" target="_blank" class="btn-link">
+              <span>VISUALIZAR SITE</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Projeto 3: Pet Shop (Foto da Logo Ilustrada Pet) -->
+      <article class="card">
+        <div class="preview">
+          <img src="Captura de tela 2026-11-03 023656.png" alt="Pet Shop Nature - Logo Ilustrada">
+          <div class="preview-overlay">
+            <span class="preview-tag">PET SHOP</span>
+          </div>
+        </div>
+        <div class="content">
+          <div class="content-header">
+            <h3>Pet Shop </h3>
+            <p>Apresentação comercial para lojas e serviços pet.</p>
+          </div>
+          <div class="card-action">
+            <a href="pet.html" target="_blank" class="btn-link">
+              <span>VISUALIZAR SITE</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Projeto 4: Beauty & Spa (Silhueta Dourada) -->
+      <article class="card">
+        <div class="preview">
+          <img src="Captura de tela 2026-11-03 023933.png" alt="Salão & Spa de Luxo - Silhueta Dourada">
+          <div class="preview-overlay">
+            <span class="preview-tag">LUXURY SPA</span>
+          </div>
+        </div>
+        <div class="content">
+          <div class="content-header">
+            <h3>Salão & Spa de Luxo</h3>
+            <p>Design elegante para salões, clínicas de estética e spas.</p>
+          </div>
+          <div class="card-action">
+            <a href="salao.html" target="_blank" class="btn-link">
+              <span>VISUALIZAR SITE</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Projeto 5: Juliana Castelo Branco (Foto de Landing Pages) -->
+      <article class="card">
+        <div class="preview">
+          <img src="Captura de tela 2026-11-03 023254.png" alt="Landing Page - Landing Pages">
+          <div class="preview-overlay">
+            <span class="preview-tag">EDUCAÇÃO</span>
+          </div>
+        </div>
+        <div class="content">
+          <div class="content-header">
+            <h3>LANDING PAGE</h3>
+            <p>Modelo de apresentação profissional e produtos educacionais.</p>
+          </div>
+          <div class="card-action">
+            <a href="landing.html" target="_blank" class="btn-link">
+              <span>VISUALIZAR SITE</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+
+
+
+
+
+
+      <!-- Projeto 6: Placas com QR Code (Design 3D) -->
+      <article class="card">
+        <div class="preview">
+          <svg class="artwork-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 3 7v10l9 5 9-5V7l-9-5Z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg>
+          <div class="preview-overlay">
+            <span class="preview-tag">PLACAS 3D</span>
+          </div>
+        </div>
+        <div class="content">
+          <div class="content-header">
+            <h3>Placas com QR Code</h3>
+            <p>Design 3D de placas para o balcão: uma para o site e outra para o Instagram da loja.</p>
+          </div>
+          <div class="card-action">
+            <a href="placa.html" target="_blank" class="btn-link">
+              <span>VISUALIZAR DESIGN</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <footer>
+    <p>STUDIO DIGITAL © 2026 — TODOS OS DIREITOS RESERVADOS.</p>
+    <p>DESENVOLVIMENTO DE INTERFACES DE ALTA PERFORMANCE</p>
+  </footer>
+
+</body>
+</html>

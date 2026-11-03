@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Pet Shop Nature — Estética Animal</title>
+
+  <!-- Google Fonts: Inter + Playfair Display (apenas para a marca) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              bg: '#FFFFFF',        /* Fundo 100% Branco Puro */
+              card: '#FFFFFF',      /* Cards também integrados em Fundo Branco */
+              blue: '#0284C7',      /* Azul vivo e moderno para botões e detalhes */
+              glow: '#38BDF8',      /* Tom azul de iluminação */
+              accent: '#0369A1',    /* Azul escuro para hover */
+              border: '#E2E8F0',    /* Borda suave e elegante */
+              text: '#0F172A'       /* Texto principal em grafite escuro */
+            }
+          },
+          fontFamily: {
+            brand: ['"Playfair Display"', 'serif'],
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      background-color: #FFFFFF;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    /* Advanced Glassmorphism Professional Cards para Fundo Branco com Destaque Azul */
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(2, 132, 199, 0.2);
+      box-shadow: 0 10px 30px rgba(2, 132, 199, 0.06);
+    }
+    
+    .glass-card {
+      background: #FFFFFF;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(2, 132, 199, 0.2);
+      box-shadow: 0 15px 35px rgba(2, 132, 199, 0.08), 0 5px 15px rgba(0, 0, 0, 0.02);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .glass-card:hover {
+      border-color: rgba(2, 132, 199, 0.6);
+      transform: translateY(-5px);
+      box-shadow: 0 25px 50px rgba(2, 132, 199, 0.18);
+    }
+
+    /* Aura Luminosa em Azul (Sombreado rodeando o corpo do pet) */
+    .pet-aura {
+      position: relative;
+    }
+    .pet-aura::after {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      background: radial-gradient(circle, rgba(2, 132, 199, 0.3) 0%, rgba(56, 189, 248, 0.1) 60%, transparent 85%);
+      border-radius: 9999px;
+      z-index: -1;
+      filter: blur(25px);
+      animation: pulse-glow 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse-glow {
+      0% { transform: scale(0.95); opacity: 0.6; }
+      100% { transform: scale(1.05); opacity: 0.9; }
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FFFFFF;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #0284C7;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-brand-blue selection:text-white bg-white">
+
+  <!-- Header / Navigation -->
+  <header class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-full border border-brand-blue flex items-center justify-center bg-brand-blue/10 transition-transform group-hover:scale-105 shadow-md">
+          <i data-lucide="paw-print" class="w-5 h-5 text-brand-blue"></i>
+        </div>
+        <span id="nav-brand" class="font-brand text-xl tracking-wider uppercase font-bold text-brand-text">
+          Pet Shop Nature
+        </span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-xs uppercase tracking-widest text-slate-600 font-semibold">
+        <a href="#inicio" class="hover:text-brand-blue transition-colors">Início</a>
+        <a href="#filosofia" class="hover:text-brand-blue transition-colors">Filosofia</a>
+        <a href="#servicos" class="hover:text-brand-blue transition-colors">Serviços</a>
+        <a href="#galeria" class="hover:text-brand-blue transition-colors">Galeria Viva</a>
+        <a href="#equipe" class="hover:text-brand-blue transition-colors">Especialistas</a>
+        <a href="#localizacao" class="hover:text-brand-blue transition-colors">Localização</a>
+      </nav>
+
+      <div class="hidden md:block">
+        <a id="header-whatsapp-btn" href="#" target="_blank" class="px-6 py-2.5 rounded-full bg-brand-blue text-white text-xs font-semibold uppercase tracking-widest hover:bg-brand-accent transition-all shadow-md flex items-center gap-2">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          <span>Contato WhatsApp</span>
+        </a>
+      </div>
+
+      <button id="mobile-menu-btn" class="md:hidden text-brand-text p-2 focus:outline-none">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Nav Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-brand-border px-6 py-6 space-y-4 shadow-xl">
+      <a href="#inicio" class="block text-xs uppercase tracking-widest text-slate-700 hover:text-brand-blue font-semibold">Início</a>
+      <a href="#filosofia" class="block text-xs uppercase tracking-widest text-slate-700 hover:text-brand-blue font-semibold">Filosofia</a>
+      <a href="#servicos" class="block text-xs uppercase tracking-widest text-slate-700 hover:text-brand-blue font-semibold">Serviços</a>
+      <a href="#galeria" class="block text-xs uppercase tracking-widest text-slate-700 hover:text-brand-blue font-semibold">Galeria Viva</a>
+      <a href="#equipe" class="block text-xs uppercase tracking-widest text-slate-700 hover:text-brand-blue font-semibold">Especialistas</a>
+      <a href="#localizacao" class="block text-xs uppercase tracking-widest text-slate-700 hover:text-brand-blue font-semibold">Localização</a>
+      <a id="mobile-whatsapp-btn" href="#" target="_blank" class="block text-center w-full py-3 rounded-full bg-brand-blue text-white font-semibold uppercase tracking-widest text-xs shadow-md">
+        Contato WhatsApp
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION (COM PET EM DESTAQUE E AURA LUMINOSA AZUL VIVA) -->
+  <section id="inicio" class="relative min-h-screen flex items-center justify-center pt-28 pb-20 overflow-hidden bg-white">
+    <div class="relative z-10 max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <!-- Coluna de Texto Principal -->
+      <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-brand-blue/30 text-brand-blue text-xs uppercase tracking-widest font-bold">
+          <i data-lucide="sparkles" class="w-4 h-4"></i>
+          <span>Bem-Estar & Estética Animal</span>
+        </div>
+
+        <h1 class="font-sans text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-brand-text leading-tight">
+          O cuidado essencial que o seu <span class="text-brand-blue underline decoration-brand-blue/30 underline-offset-8">pet merece</span>
+        </h1>
+
+        <p class="text-slate-600 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
+          Um ambiente dedicado à vitalidade, higiene e saúde animal. Cosméticos de alta qualidade, manuseio carinhoso e zero estresse em Fortaleza.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+          <a id="hero-cta-whatsapp" href="#" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-blue text-white font-bold text-xs uppercase tracking-widest hover:bg-brand-accent transition-all shadow-lg flex items-center justify-center gap-3">
+            <i data-lucide="message-circle" class="w-5 h-5"></i>
+            <span>Falar com Atendimento</span>
+          </a>
+          <a href="#servicos" class="w-full sm:w-auto px-8 py-4 rounded-full glass-panel text-slate-700 font-bold text-xs uppercase tracking-widest hover:bg-slate-100 transition-all border border-brand-blue/30">
+            Ver Procedimentos
+          </a>
+        </div>
+      </div>
+
+      <!-- Coluna da Imagem do Pet com Sombra/Aura Luminosa Rodeando o Corpo -->
+      <div class="lg:col-span-5 flex justify-center">
+        <div class="relative w-72 h-72 sm:w-96 sm:h-96 pet-aura rounded-full overflow-hidden border-2 border-brand-blue/50 p-2 glass-panel shadow-2xl">
+          <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80" alt="Pet Saudável e Feliz" class="w-full h-full object-cover rounded-full filter brightness-105 contrast-105">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILOSOFIA & VITALIDADE -->
+  <section id="filosofia" class="py-24 bg-white relative border-y border-brand-border">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="glass-card p-8 rounded-3xl space-y-4">
+          <div class="w-12 h-12 rounded-2xl bg-brand-blue/10 border border-brand-blue/30 flex items-center justify-center text-brand-blue">
+            <i data-lucide="shield-check" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-sans text-xl text-brand-text font-bold">Produtos Selecionados</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">Utilizamos apenas cosméticos dermatologicamente testados e aprovados, respeitando a sensibilidade da pele do seu animal.</p>
+        </div>
+
+        <div class="glass-card p-8 rounded-3xl space-y-4">
+          <div class="w-12 h-12 rounded-2xl bg-brand-blue/10 border border-brand-blue/30 flex items-center justify-center text-brand-blue">
+            <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-sans text-xl text-brand-text font-bold">Manejo Carinhoso</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">Equipe treinada para proporcionar um atendimento tranquilo, seguro e humanizado para cães e gatos.</p>
+        </div>
+
+        <div class="glass-card p-8 rounded-3xl space-y-4">
+          <div class="w-12 h-12 rounded-2xl bg-brand-blue/10 border border-brand-blue/30 flex items-center justify-center text-brand-blue">
+            <i data-lucide="truck" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-sans text-xl text-brand-text font-bold">Taxi Dog Seguro</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">Veículos confortáveis e higienizados para o serviço de leva e traz com total segurança em Fortaleza.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS SECTION -->
+  <section id="servicos" class="py-28 relative bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center space-y-4 mb-16">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-brand-blue">Procedimentos & Cuidados</h2>
+        <h3 class="font-sans text-3xl sm:text-5xl font-bold tracking-tight text-brand-text">Nossos Serviços</h3>
+        <p class="text-slate-600 max-w-xl mx-auto text-sm">Selecione uma categoria abaixo para explorar nossos tratamentos essenciais.</p>
+      </div>
+
+      <!-- Tabs de Categoria -->
+      <div id="service-tabs" class="flex flex-wrap justify-center gap-3 mb-12"></div>
+
+      <!-- Grid de Cards em Vidro Profissional -->
+      <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+    </div>
+  </section>
+
+  <!-- GALERIA VIVA -->
+  <section id="galeria" class="py-28 bg-white border-t border-brand-border">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+        <div>
+          <h2 class="text-xs font-bold uppercase tracking-widest text-brand-blue">Momentos de Alegria</h2>
+          <h3 class="font-sans text-3xl sm:text-5xl font-bold tracking-tight text-brand-text mt-2">Galeria de Clientes</h3>
+        </div>
+        <p class="text-slate-600 text-sm max-w-md">Registros reais de pets limpos e felizes em nosso estabelecimento.</p>
+      </div>
+      <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <!-- EQUIPE DE ESPECIALISTAS -->
+  <section id="equipe" class="py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center space-y-4 mb-16">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-brand-blue">Corpo Técnico</h2>
+        <h3 class="font-sans text-3xl sm:text-5xl font-bold tracking-tight text-brand-text">Especialistas Dedicados</h3>
+        <p class="text-slate-600 max-w-lg mx-auto text-sm">Profissionais apaixonados por animais e certificados em estética animal.</p>
+      </div>
+      <div id="team-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+    </div>
+  </section>
+
+  <!-- AVALIAÇÕES DE TUTORES -->
+  <section id="avaliacoes" class="py-28 bg-white border-t border-brand-border">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center space-y-4 mb-16">
+        <div class="inline-flex items-center gap-1 text-amber-500">
+          <i data-lucide="star" class="w-4 h-4 fill-amber-500"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-amber-500"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-amber-500"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-amber-500"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-amber-500"></i>
+        </div>
+        <h2 class="font-sans text-3xl sm:text-5xl font-bold tracking-tight text-brand-text">O que dizem os tutores</h2>
+        <p class="text-slate-600 max-w-lg mx-auto text-sm">Depoimentos de quem confia na qualidade do nosso atendimento.</p>
+      </div>
+      <div id="reviews-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+    </div>
+  </section>
+
+  <!-- LOCALIZAÇÃO & CONTATO -->
+  <section id="localizacao" class="py-28 bg-white border-t border-brand-border">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-8">
+          <div>
+            <h2 class="text-xs font-bold uppercase tracking-widest text-brand-blue mb-2">Visite Nosso Espaço</h2>
+            <h3 class="font-sans text-3xl sm:text-4xl font-bold tracking-tight text-brand-text">Localização & Contato</h3>
+          </div>
+
+          <div class="space-y-6 text-sm text-slate-700 font-medium">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full border border-brand-blue/30 flex items-center justify-center shrink-0 bg-brand-blue/10 text-brand-blue">
+                <i data-lucide="map-pin" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="font-bold text-brand-text">Endereço</p>
+                <p id="contact-address" class="text-slate-600 mt-1 font-normal">Av. Desembargador Moreira, 1300 - Aldeota, Fortaleza - CE</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full border border-brand-blue/30 flex items-center justify-center shrink-0 bg-brand-blue/10 text-brand-blue">
+                <i data-lucide="clock" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="font-bold text-brand-text">Horário de Funcionamento</p>
+                <p id="contact-hours" class="text-slate-600 mt-1 font-normal">Segunda a Sábado: 08:00 às 19:00</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full border border-brand-blue/30 flex items-center justify-center shrink-0 bg-brand-blue/10 text-brand-blue">
+                <i data-lucide="phone" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="font-bold text-brand-text">WhatsApp Comercial</p>
+                <p id="contact-phone" class="text-slate-600 mt-1 font-normal">+55 (85) 98765-4321</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-4 flex gap-4">
+            <a id="btn-whatsapp" href="#" target="_blank" class="px-6 py-3 rounded-full bg-brand-blue text-white font-bold text-xs uppercase tracking-widest hover:bg-brand-accent transition-all flex items-center gap-2 shadow-md">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              <span>Abrir WhatsApp</span>
+            </a>
+            <a id="btn-instagram" href="#" target="_blank" class="px-6 py-3 rounded-full glass-panel text-slate-700 font-bold text-xs uppercase tracking-widest hover:bg-slate-100 transition-all border border-brand-blue/30 flex items-center gap-2">
+              <i data-lucide="instagram" class="w-4 h-4"></i>
+              <span>Instagram</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="h-96 rounded-3xl overflow-hidden glass-panel border border-brand-blue/30 relative shadow-xl">
+          <iframe 
+            id="gmaps-iframe"
+            class="w-full h-full grayscale opacity-80 hover:opacity-100 hover:grayscale-0 transition-all duration-500"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.3323087315!2d-38.4984!3d-3.7381!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM8KwNDQnMTcuMiJTIDM4wrAyOSc5NC40Ilc!5e0!3m2!1spt-BR!2sbr!4v1620000000000!5m2!1spt-BR!2sbr"
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-12 bg-white border-t border-brand-border text-center text-xs text-slate-500 space-y-4">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p id="footer-brand" class="font-brand text-sm font-bold text-brand-text">© Pet Shop Nature. Todos os direitos reservados.</p>
+      <p class="text-brand-blue font-semibold">Cuidado e dedicação em cada detalhe.</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT CENTRALIZADO DE CONFIGURAÇÃO (PETSHOP NATURE) -->
+  <script>
+    const PETSHOP_CONFIG = {
+      name: "Pet Shop Nature",
+      subName: "Estética & Cuidado Animal",
+      whatsapp: "5585987654321",
+      instagram: "https://instagram.com",
+      address: "Av. Desembargador Moreira, 1300 - Aldeota, Fortaleza - CE",
+      hours: "Segunda a Sábado: 08h às 19h",
+
+      categories: ["Todos", "Banho & Tosa", "Hidratação", "Cuidados Especiais"],
+      services: [
+        {
+          name: "Banho Completo Essencial",
+          category: "Banho & Tosa",
+          desc: "Inclui banho com shampoo especial, limpeza auricular cuidadosa, corte de unhas e secagem completa.",
+          img: "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=800&q=80"
+        },
+        {
+          name: "Tosa Higiênica",
+          category: "Banho & Tosa",
+          desc: "Aparas nas regiões das patas, barriga e área íntima para garantir maior conforto e limpeza no dia a dia.",
+          img: "https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?auto=format&fit=crop&w=800&q=80"
+        },
+        {
+          name: "Hidratação de Pelagem",
+          category: "Hidratação",
+          desc: "Máscara nutritiva intensiva para devolver o brilho, a maciez e a vitalidade aos pelos longos ou danificados.",
+          img: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80"
+        },
+        {
+          name: "Tosa na Tesoura",
+          category: "Banho & Tosa",
+          desc: "Modelagem completa realizada inteiramente com tesoura, ideal para raças específicas e acabamento impecável.",
+          img: "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=800&q=80"
+        },
+        {
+          name: "Desembaraço e Remoção de Subpelos",
+          category: "Cuidados Especiais",
+          desc: "Técnica profissional para remoção cuidadosa de nós e pelos mortos, evitando agressões à pele.",
+          img: "https://images.unsplash.com/photo-1541599540903-216a46ca1dc0?auto=format&fit=crop&w=800&q=80"
+        },
+        {
+          name: "Pacote Mensal de Banhos",
+          category: "Cuidados Especiais",
+          desc: "Plano mensal com 4 banhos completos programados e serviço de Taxi Dog inclusivo para sua comodidade.",
+          img: "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&w=800&q=80"
+        }
+      ],
+
+      gallery: [
+        { title: "Spitz Alemão Liam", category: "Tosa Tesoura", img: "https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=800&q=80" },
+        { title: "Golden Retriever Noah", category: "Banho Completo", img: "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=800&q=80" },
+        { title: "Shih-tzu Maya", category: "Tosa Higiênica", img: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=800&q=80" },
+        { title: "Poodle Luna", category: "Estética", img: "https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=800&q=80" },
+        { title: "Gato Persa Oliver", category: "Higiene Felina", img: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=800&q=80" },
+        { title: "Bulldog Francês Bidu", category: "Banho & Hidratação", img: "https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb?auto=format&fit=crop&w=800&q=80" }
+      ],
+
+      team: [
+        { name: "Larissa Fontenele", role: "Mestra em Estética Animal", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80" },
+        { name: "Matheus Cavalcante", role: "Especialista em Banho & Tosa", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" },
+        { name: "Beatriz Holanda", role: "Atendimento & Bem-Estar Pet", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" }
+      ],
+
+      reviews: [
+        { client: "Mariana Vasconcelos", comment: "Meus pets voltam sempre limpinhos, cheirosos e muito tranquilos. O atendimento é excelente!", rating: 5 },
+        { client: "Thiago Bezerra", comment: "Serviço de Taxi Dog pontual e seguro. A estrutura e a limpeza do pet shop são impecáveis.", rating: 5 },
+        { client: "Camila Queiroz", comment: "Melhor pet shop de Fortaleza! O carinho com que tratam os animais faz toda a diferença.", rating: 5 }
+      ]
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+
+      document.getElementById("page-title").innerText = `${PETSHOP_CONFIG.name} — ${PETSHOP_CONFIG.subName}`;
+      document.getElementById("nav-brand").innerText = PETSHOP_CONFIG.name;
+      document.getElementById("contact-address").innerText = PETSHOP_CONFIG.address;
+      document.getElementById("contact-hours").innerText = PETSHOP_CONFIG.hours;
+      document.getElementById("contact-phone").innerText = `+55 (${PETSHOP_CONFIG.whatsapp.slice(2,4)}) ${PETSHOP_CONFIG.whatsapp.slice(4,9)}-${PETSHOP_CONFIG.whatsapp.slice(9)}`;
+      document.getElementById("footer-brand").innerText = `© ${PETSHOP_CONFIG.name}. Todos os direitos reservados.`;
+
+      const waUrl = `https://wa.me/${PETSHOP_CONFIG.whatsapp}?text=` + encodeURIComponent("Olá! Gostaria de mais informações sobre os serviços do Pet Shop Nature.");
+      document.getElementById("header-whatsapp-btn").href = waUrl;
+      document.getElementById("mobile-whatsapp-btn").href = waUrl;
+      document.getElementById("hero-cta-whatsapp").href = waUrl;
+      document.getElementById("btn-whatsapp").href = waUrl;
+      document.getElementById("btn-instagram").href = PETSHOP_CONFIG.instagram;
+
+      renderTabs();
+      renderServices("Todos");
+      renderGallery();
+      renderTeam();
+      renderReviews();
+
+      document.getElementById("mobile-menu-btn").onclick = () => {
+        document.getElementById("mobile-menu").classList.toggle("hidden");
+      };
+    });
+
+    function renderTabs() {
+      const container = document.getElementById("service-tabs");
+      container.innerHTML = "";
+      PETSHOP_CONFIG.categories.forEach((cat, idx) => {
+        const btn = document.createElement("button");
+        btn.className = `px-5 py-2 rounded-full text-xs uppercase tracking-widest font-semibold transition-all ${
+          idx === 0 ? "bg-brand-blue text-white shadow-md" : "glass-panel text-slate-700 hover:text-brand-blue border border-brand-blue/20"
+        }`;
+        btn.innerText = cat;
+        btn.onclick = () => {
+          document.querySelectorAll("#service-tabs button").forEach(b => {
+            b.className = "px-5 py-2 rounded-full text-xs uppercase tracking-widest font-semibold transition-all glass-panel text-slate-700 hover:text-brand-blue border border-brand-blue/20";
+          });
+          btn.className = "px-5 py-2 rounded-full text-xs uppercase tracking-widest font-semibold transition-all bg-brand-blue text-white shadow-md";
+          renderServices(cat);
+        };
+        container.appendChild(btn);
+      });
+    }
+
+    function renderServices(category) {
+      const grid = document.getElementById("services-grid");
+      grid.innerHTML = "";
+      const filtered = category === "Todos" ? PETSHOP_CONFIG.services : PETSHOP_CONFIG.services.filter(s => s.category === category);
+
+      filtered.forEach(s => {
+        const card = document.createElement("div");
+        card.className = "glass-card rounded-3xl overflow-hidden group p-2";
+        card.innerHTML = `
+          <div class="h-52 overflow-hidden relative rounded-2xl">
+            <img src="${s.img}" alt="${s.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+          </div>
+          <div class="p-6 space-y-3">
+            <span class="text-[10px] uppercase tracking-widest text-brand-blue font-bold">${s.category}</span>
+            <h4 class="font-sans text-xl text-brand-text font-bold">${s.name}</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">${s.desc}</p>
+            <a href="https://wa.me/${PETSHOP_CONFIG.whatsapp}?text=${encodeURIComponent('Olá! Gostaria de agendar o serviço: ' + s.name)}" target="_blank" class="inline-flex items-center gap-2 text-xs uppercase tracking-wider text-brand-blue hover:text-brand-accent pt-2 font-bold transition-colors">
+              <span>Agendar no WhatsApp</span>
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+      lucide.createIcons();
+    }
+
+    function renderGallery() {
+      const grid = document.getElementById("gallery-grid");
+      grid.innerHTML = "";
+      PETSHOP_CONFIG.gallery.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "relative rounded-3xl overflow-hidden h-72 group glass-card p-2";
+        div.innerHTML = `
+          <div class="w-full h-full relative rounded-2xl overflow-hidden">
+            <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent opacity-80 group-hover:opacity-90"></div>
+            <div class="absolute bottom-4 left-4 right-4 space-y-1">
+              <span class="text-[10px] uppercase tracking-widest text-sky-300 font-bold">${item.category}</span>
+              <h4 class="font-sans text-lg text-white font-bold">${item.title}</h4>
+            </div>
+          </div>
+        `;
+        grid.appendChild(div);
+      });
+    }
+
+    function renderTeam() {
+      const grid = document.getElementById("team-grid");
+      grid.innerHTML = "";
+      PETSHOP_CONFIG.team.forEach(m => {
+        const card = document.createElement("div");
+        card.className = "glass-card rounded-3xl overflow-hidden text-center p-8 space-y-4";
+        card.innerHTML = `
+          <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-2 border-brand-blue/40 p-1 shadow-md">
+            <img src="${m.img}" alt="${m.name}" class="w-full h-full object-cover rounded-full">
+          </div>
+          <div>
+            <h4 class="font-sans text-xl text-brand-text font-bold">${m.name}</h4>
+            <p class="text-xs text-brand-blue uppercase tracking-wider mt-1 font-bold">${m.role}</p>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function renderReviews() {
+      const grid = document.getElementById("reviews-grid");
+      grid.innerHTML = "";
+      PETSHOP_CONFIG.reviews.forEach(r => {
+        const card = document.createElement("div");
+        card.className = "glass-card rounded-3xl p-8 space-y-4 flex flex-col justify-between";
+        card.innerHTML = `
+          <div class="space-y-3">
+            <div class="flex text-amber-500 gap-1">
+              ${'<i data-lucide="star" class="w-4 h-4 fill-amber-500"></i>'.repeat(r.rating)}
+            </div>
+            <p class="text-slate-600 text-xs italic leading-relaxed">"${r.comment}"</p>
+          </div>
+          <p class="font-sans text-sm text-brand-text font-bold pt-4 border-t border-brand-blue/20">— ${r.client}</p>
+        `;
+        grid.appendChild(card);
+      });
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

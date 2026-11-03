@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Juliana Castelo Branco</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* FUNDO */
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: radial-gradient(circle at top, #0f172a, #020617);
+}
+
+/* CONTAINER */
+.container {
+  max-width: 420px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* PERFIL */
+.perfil {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 40px auto 10px;
+  border: 3px solid #2563eb;
+  object-fit: cover;
+  box-shadow: 0 0 25px rgba(37,99,235,0.7);
+}
+
+/* NOME */
+.nome {
+  font-size: 22px;
+  font-weight: 800;
+  text-align: center;
+  color: white;
+}
+
+/* HEADLINE */
+.headline {
+  color: #60a5fa;
+  font-size: 15px;
+  text-align: center;
+  margin-top: 8px;
+  font-weight: 700;
+}
+
+/* BIO */
+.bio {
+  font-size: 14px;
+  text-align: center;
+  margin: 12px 0 20px;
+  color: #e2e8f0;
+}
+
+/* BOTÃO */
+.whatsapp {
+  display: block;
+  background: linear-gradient(45deg, #2563eb, #1d4ed8);
+  color: white;
+  padding: 15px;
+  border-radius: 12px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-bottom: 25px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+/* CARDS */
+.card {
+  display: block;
+  position: relative;
+  margin: 15px 0;
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.04);
+}
+
+.card img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  filter: brightness(0.7);
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(2,6,23,0.9), rgba(2,6,23,0.2));
+}
+
+.overlay {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  right: 15px;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  z-index: 2;
+}
+
+.tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #2563eb;
+  color: white;
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  z-index: 2;
+}
+
+/* DESTAQUE */
+.destaque {
+  border: 2px solid #2563eb;
+  box-shadow: 0 0 30px rgba(37,99,235,0.9);
+  transform: scale(1.05);
+}
+
+.destaque-tag {
+  background: linear-gradient(45deg, #2563eb, #1d4ed8);
+  font-size: 13px;
+}
+
+/* PROVA SOCIAL */
+.prova {
+  text-align: center;
+  color: #cbd5f5;
+  font-size: 13px;
+  margin: 15px 0;
+}
+
+/* WHATS FLUTUANTE */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #2563eb;
+  color: white;
+  font-size: 22px;
+  padding: 15px;
+  border-radius: 50%;
+  text-decoration: none;
+  box-shadow: 0 0 15px rgba(37,99,235,0.8);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOafja8GJCXQ8ItXS7idbSXusT6qvmavrx5g&s" class="perfil">
+
+<h1 class="nome">JULIANA CASTELO BRANCO</h1>
+
+<div class="bio">
+<strong>Mentora / Professora</strong><br>
+Bacharel em Direito<br>
+Pós-graduada em Penal e Processo Penal<br><br>
+
+<span style="color:#60a5fa;">✔ Aprovada dentro das vagas:</span><br>
+Guarda Municipal do Eusébio<br>
+IBGE<br>
+Polícia Penal<br>
+Guarda Municipal de Fortaleza
+</div>
+
+<a class="whatsapp" href="https://wa.me/5585989833591?text=Olá,%20queria%20mais%20informações%20sobre%20apostilas%20e%20mentorias!" target="_blank">
+👉 Quero mais informações
+</a>
+
+<div class="prova">
+⭐ Mais de 500 alunos já estão estudando com esse método
+</div>
+
+<!-- APOSTILAS ONLINE -->
+<a href="https://go.hotmart.com/H102814907V?dp=1" target="_blank" class="card">
+<div class="tag">APOSTILAS ONLINE</div>
+<img src="https://static-media.hotmart.com/Zxn5qnYWdHDCaV2AaYk1dY99s6g=/295x165/smart/filters:quality(100)/hotmart/product_pictures/ae4e462d-6890-4306-abb1-8208a9143fcf/220QQUADRADO.png">
+<div class="overlay">📘 Apostilas online para começar</div>
+</a>
+
+<!-- APOSTILAS IMPRESSAS -->
+<a href="https://wa.me/5585989833591?text=Olá,%20quero%20apostilas%20impressas!" target="_blank" class="card">
+<div class="tag">APOSTILAS IMPRESSAS</div>
+<img src="combined_images.jpg">
+<div class="overlay">📦 Receba apostilas impressas</div>
+</a>
+
+<!-- MENTORIA COLETIVA (SEM DESTAQUE) -->
+<a href="https://go.hotmart.com/F99338505Y?dp=1" target="_blank" class="card">
+<div class="tag">MENTORIA</div>
+<img src="https://hotmart.s3.amazonaws.com/product_pictures/f133cf64-fc70-4209-ada4-ff1b8a2cc0e6/MENTORIADERETAFINAL.png">
+<div class="overlay">🚔 Mentoria coletiva com materiais completos</div>
+</a>
+
+<!-- MENTORIA INDIVIDUAL -->
+<a href="https://wa.me/5585989833591?text=Olá,%20quero%20mentoria%20individual!" target="_blank" class="card">
+<div class="tag">Mentoria VIP individual</div>
+<img src="combined3_images.jpg">
+<div class="overlay">👩🏻‍🏫  -PLANEJAMENTO/CRONOGRAMA PERSONALIZADO</div>
+</a>
+
+</div>
+
+<a href="https://wa.me/5585989833591?text=Olá,%20quero%20mais%20informações!" class="whatsapp-float">
+💬
+</a>
+
+</body>
+</html>

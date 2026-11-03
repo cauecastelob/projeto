@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>J Souza Barbearia | Messejana</title>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --bg:      #07070b;
+      --s1:      #0e0e14;
+      --s2:      #14141c;
+      --s3:      #1c1c28;
+      --gold:    #b5924a;
+      --gold-hi: #d4ae72;
+      --gold-lo: rgba(181,146,74,.10);
+      --gold-md: rgba(181,146,74,.22);
+      --chalk:   #edeae2;
+      --ash:     #90897f;
+      --coal:    #3e3b37;
+      --danger:  #c0392b;
+      --ok:      #4caf6b;
+      --ln:      rgba(255,255,255,.07);
+      --ln2:     rgba(255,255,255,.13);
+      --ease:    cubic-bezier(.4,0,.2,1);
+      --r:       14px;
+    }
+
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+      background:var(--bg);
+      color:var(--chalk);
+      font-family:'Jost',sans-serif;
+      font-weight:300;
+      min-height:100vh;
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    .bg{
+      position:fixed;inset:0;z-index:0;
+      background:
+        linear-gradient(160deg,rgba(7,7,11,.9) 0%,rgba(7,7,11,.97) 100%),
+        url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1800')
+        center/cover no-repeat;
+    }
+    .bg::after{
+      content:'';position:absolute;inset:0;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity:.55;
+    }
+
+    .ico{position:fixed;z-index:2;pointer-events:none;color:var(--gold);opacity:.22;font-size:48px;filter:drop-shadow(0 6px 20px rgba(181,146,74,.45))}
+    .ico.a{top:9%;left:3%;animation:d1 7s ease-in-out infinite}
+    .ico.b{top:40%;right:3%;animation:d2 8.5s ease-in-out infinite;animation-delay:.7s}
+    .ico.c{bottom:24%;left:5%;animation:d1 9.5s ease-in-out infinite;animation-delay:1.5s}
+    .ico.d{top:65%;right:6%;animation:d2 6.8s ease-in-out infinite;animation-delay:2.2s}
+    .ico.e{bottom:7%;right:9%;animation:d1 7.8s ease-in-out infinite;animation-delay:.3s;font-size:30px;opacity:.14}
+    @keyframes d1{0%,100%{transform:translateY(0) rotate(-11deg) scale(1)}50%{transform:translateY(-26px) rotate(9deg) scale(1.07)}}
+    @keyframes d2{0%,100%{transform:translateY(0) rotate(9deg) scale(1)}50%{transform:translateY(-20px) rotate(-13deg) scale(1.05)}}
+
+    .wrap{position:relative;z-index:10;max-width:420px;margin:0 auto;padding:0 18px 72px;display:flex;flex-direction:column;align-items:center}
+
+    .datetime-bar{
+      width:100%;display:flex;align-items:center;justify-content:center;
+      gap:12px;padding:10px 0 0;
+      font-size:11px;letter-spacing:.1em;color:var(--ash);
+    }
+    .datetime-bar i{color:var(--gold);font-size:10px}
+    #live-date{font-weight:500;color:var(--chalk);opacity:.7}
+    #live-time{font-family:'Libre Baskerville',serif;font-size:13px;color:var(--gold);letter-spacing:.08em}
+
+    .profile{text-align:center;padding:28px 0 32px}
+    .avatar-ring{width:104px;height:104px;border-radius:50%;padding:3px;background:conic-gradient(var(--gold-hi) 0%,var(--coal) 55%,var(--gold) 100%);margin:0 auto 16px;position:relative}
+    .avatar-ring::before{content:'';position:absolute;inset:-3px;border-radius:50%;background:conic-gradient(transparent,var(--gold-md),transparent,var(--gold-md),transparent);animation:spin 10s linear infinite;opacity:.5;z-index:-1}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .avatar-ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid var(--bg);display:block}
+    .profile h1{font-family:'Libre Baskerville',serif;font-size:24px;font-weight:400;letter-spacing:.02em;margin-bottom:5px}
+    .profile-city{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:500}
+    .status{display:inline-flex;align-items:center;gap:7px;margin-top:10px;font-size:11px;color:var(--ash);letter-spacing:.05em}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px rgba(76,175,107,.7);animation:pulse 2s ease-in-out infinite}
+    .dot.closed{background:var(--danger);box-shadow:0 0 8px rgba(192,57,43,.7);animation:pulse-red 2s ease-in-out infinite}
+    @keyframes pulse{0%,100%{box-shadow:0 0 6px rgba(76,175,107,.55)}50%{box-shadow:0 0 14px rgba(76,175,107,.9)}}
+    @keyframes pulse-red{0%,100%{box-shadow:0 0 6px rgba(192,57,43,.55)}50%{box-shadow:0 0 14px rgba(192,57,43,.9)}}
+
+    .view{display:none;width:100%}
+    .view.active{display:block;animation:up .32s var(--ease)}
+    @keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+    .menu-card{
+      width:100%;display:flex;align-items:center;gap:14px;padding:16px 18px;margin-bottom:10px;min-height:68px;
+      background:rgba(14,14,20,.9);border:1px solid var(--ln2);border-radius:var(--r);
+      text-decoration:none;color:var(--chalk);cursor:pointer;isolation:isolate;position:relative;
+      transition:border-color .24s var(--ease), transform .24s var(--ease);
+    }
+    .menu-card::before{content:'';position:absolute;inset:0;border-radius:var(--r);background:var(--gold-lo);opacity:0;transition:opacity .22s;z-index:-1}
+    .menu-card:hover{border-color:rgba(181,146,74,.4);transform:translateY(-2px)}
+    .menu-card:hover::before{opacity:1}
+    .menu-card.featured{border-color:var(--gold);background:rgba(181,146,74,.09)}
+    .menu-card.featured:hover{border-color:var(--gold-hi)}
+
+    .mc-icon{width:42px;height:42px;flex-shrink:0;border-radius:10px;background:var(--gold-lo);border:1px solid var(--gold-md);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:17px;transition:background .22s}
+    .menu-card:hover .mc-icon{background:var(--gold-md)}
+    .mc-text{flex:1;min-width:0}
+    .mc-title{font-size:15px;font-weight:500;color:var(--chalk);line-height:1.2}
+    .mc-sub{font-size:11px;color:var(--ash);margin-top:2px}
+    .mc-arrow{color:var(--coal);font-size:11px;flex-shrink:0;transition:color .2s,transform .2s}
+    .menu-card:hover .mc-arrow{color:var(--gold);transform:translateX(3px)}
+
+    .back{background:none;border:none;color:var(--ash);cursor:pointer;font-family:'Jost';font-size:12px;letter-spacing:.08em;display:flex;align-items:center;gap:6px;margin-bottom:18px;padding:0;transition:color .2s}
+    .back:hover{color:var(--gold)}
+
+    .sec{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:10px;width:100%;margin-bottom:13px;margin-top:4px}
+    .sec::after{content:'';flex:1;height:1px;background:var(--ln2)}
+
+    .barber-card{width:100%;background:rgba(14,14,20,.9);border:1px solid var(--ln2);border-radius:var(--r);overflow:hidden;cursor:pointer;margin-bottom:10px;display:flex;align-items:center;transition:border-color .25s var(--ease),transform .25s var(--ease);position:relative;isolation:isolate}
+    .barber-card:hover{border-color:rgba(181,146,74,.38);transform:translateY(-2px)}
+    .barber-card.chosen{border-color:var(--gold)}
+    .bphoto{width:72px;height:72px;flex-shrink:0;overflow:hidden}
+    .bphoto img{width:100%;height:100%;object-fit:cover;filter:grayscale(15%) brightness(.82);transition:transform .5s var(--ease)}
+    .barber-card:hover .bphoto img{transform:scale(1.06)}
+    .bphoto-init{width:72px;height:72px;display:flex;align-items:center;justify-content:center;font-family:'Libre Baskerville',serif;font-size:26px;color:var(--gold);opacity:.45;background:var(--s2)}
+    .binfo{flex:1;padding:13px 15px}
+    .bname{font-family:'Libre Baskerville',serif;font-size:17px;margin-bottom:2px}
+    .bspec{font-size:11px;color:var(--ash);letter-spacing:.04em}
+    .bavail{font-size:10px;font-weight:500;margin-top:5px;letter-spacing:.05em}
+    .bavail.ok{color:var(--ok)}
+    .bavail.none{color:var(--danger)}
+    .barrow{padding:0 16px;color:var(--coal);font-size:11px;transition:color .2s,transform .2s}
+    .barber-card:hover .barrow{color:var(--gold);transform:translateX(3px)}
+
+    .flabel{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:7px}
+    .finput{width:100%;padding:14px 16px;background:rgba(14,14,20,.9);border:1px solid var(--ln2);border-radius:var(--r);color:var(--chalk);font-family:'Jost';font-size:15px;font-weight:300;outline:none;margin-bottom:20px;transition:.22s}
+    .finput::placeholder{color:var(--coal)}
+    .finput:focus{border-color:var(--gold);background:rgba(181,146,74,.06)}
+
+    .svc{width:100%;background:rgba(14,14,20,.9);border:1px solid var(--ln2);border-radius:var(--r);padding:14px 16px;margin-bottom:9px;display:flex;align-items:center;gap:13px;cursor:pointer;transition:.22s var(--ease);isolation:isolate;position:relative;overflow:hidden}
+    .svc::before{content:'';position:absolute;inset:0;background:var(--gold-lo);opacity:0;transition:.2s;z-index:-1}
+    .svc:hover{border-color:rgba(181,146,74,.32)}
+    .svc:hover::before{opacity:1}
+    .svc.chosen{border-color:var(--gold);background:var(--gold-lo)}
+    .sradio{width:17px;height:17px;border-radius:50%;border:1.5px solid var(--coal);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:.2s}
+    .svc.chosen .sradio{border-color:var(--gold);background:var(--gold)}
+    .svc.chosen .sradio::after{content:'';width:5px;height:5px;border-radius:50%;background:#000}
+    .sbody{flex:1}
+    .sname{font-size:14px;font-weight:400;margin-bottom:2px}
+    .sdur{font-size:11px;color:var(--ash)}
+    .sprice{font-family:'Libre Baskerville',serif;font-size:15px;color:var(--gold);flex-shrink:0}
+
+    .slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:26px}
+    .slot{background:rgba(14,14,20,.9);border:1px solid var(--ln2);border-radius:10px;padding:12px 4px;text-align:center;font-family:'Jost';font-size:13px;color:var(--ash);cursor:pointer;transition:.2s var(--ease);isolation:isolate;position:relative;overflow:hidden;user-select:none}
+    .slot::before{content:'';position:absolute;inset:0;background:var(--gold-lo);opacity:0;transition:.2s;z-index:-1}
+    .slot:hover:not(.busy){border-color:rgba(181,146,74,.33);color:var(--chalk)}
+    .slot:hover:not(.busy)::before{opacity:1}
+    .slot.chosen{border-color:var(--gold);color:var(--gold)}
+    .slot.busy{opacity:.28;cursor:not-allowed;background:rgba(192,57,43,.06);border-color:rgba(192,57,43,.18)}
+    .stime{position:relative;z-index:1}
+    .slot.busy .stime{text-decoration:line-through;color:var(--danger)}
+    .slot-tag{display:none;font-size:9px;letter-spacing:.06em;color:var(--danger);margin-top:2px;position:relative;z-index:1}
+    .slot.busy .slot-tag{display:block}
+
+    .resumo{width:100%;background:rgba(181,146,74,.07);border:1px solid var(--gold-md);border-radius:var(--r);padding:20px 22px;margin-bottom:16px}
+    .resumo-head{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:10px;margin-bottom:16px}
+    .resumo-head::after{content:'';flex:1;height:1px;background:var(--gold-md)}
+    .resumo-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .rkey{font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--coal);margin-bottom:4px}
+    .rval{font-family:'Libre Baskerville',serif;font-size:16px;color:var(--chalk)}
+    .rval.empty{font-style:italic;color:var(--coal);font-size:13px}
+    .rval.price{color:var(--gold-hi)}
+    .taxa-note{display:none;margin-top:14px;background:var(--gold-lo);border:1px solid var(--gold-md);border-radius:8px;padding:9px 12px;font-size:11px;color:var(--gold);align-items:center;gap:7px}
+    .taxa-note.show{display:flex}
+
+    .btn-confirm{width:100%;padding:18px;background:var(--gold);border:none;border-radius:var(--r);color:#07070b;font-family:'Jost';font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;transition:.26s var(--ease);position:relative;overflow:hidden}
+    .btn-confirm::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.14);opacity:0;transition:.2s}
+    .btn-confirm:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(181,146,74,.28)}
+    .btn-confirm:hover::before{opacity:1}
+    .btn-confirm:active{transform:scale(.99)}
+    .btn-confirm:disabled{opacity:.35;cursor:not-allowed;transform:none;box-shadow:none}
+
+    .cancel-section{width:100%;margin-top:10px}
+    .btn-cancel-ag{width:100%;padding:13px;background:transparent;border:1px solid rgba(192,57,43,.3);border-radius:var(--r);color:var(--danger);font-family:'Jost';font-size:11px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:.22s}
+    .btn-cancel-ag:hover{border-color:var(--danger);background:rgba(192,57,43,.08)}
+
+    .modal-cancel-box{background:var(--s2);border:1px solid rgba(192,57,43,.35);border-radius:20px;padding:28px 24px;width:90%;max-width:340px;animation:up .3s var(--ease)}
+    .modal-cancel-box h2{font-family:'Libre Baskerville',serif;font-size:19px;color:var(--danger);margin-bottom:8px}
+    .modal-cancel-box p{font-size:13px;color:var(--ash);line-height:1.7;margin-bottom:20px}
+    .cancel-field{margin-bottom:16px}
+    .btn-confirm-cancel{width:100%;padding:14px;background:var(--danger);border:none;border-radius:12px;color:#fff;font-family:'Jost';font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;transition:.22s}
+    .btn-confirm-cancel:hover{opacity:.88}
+    .btn-back-cancel{width:100%;padding:13px;background:transparent;border:1px solid var(--ln2);border-radius:12px;color:var(--chalk);font-family:'Jost';font-size:12px;letter-spacing:.1em;cursor:pointer;transition:.2s}
+    .btn-back-cancel:hover{border-color:var(--gold);color:var(--gold)}
+
+    .modal{display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.92);backdrop-filter:blur(16px);align-items:center;justify-content:center}
+    .modal.open{display:flex}
+    .modal-box{background:var(--s2);border:1px solid var(--gold-md);border-radius:20px;padding:30px 26px;width:90%;max-width:340px;animation:up .3s var(--ease)}
+    .modal-box h2{font-family:'Libre Baskerville',serif;font-size:20px;color:var(--gold);margin-bottom:22px}
+    .mrow{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px dashed rgba(181,146,74,.15);font-size:14px}
+    .mrow:last-of-type{border:none}
+    .mprice{color:var(--gold);font-weight:500}
+    .mnote{background:var(--gold-lo);border:1px solid var(--gold-md);border-radius:9px;padding:11px 13px;font-size:11px;color:var(--ash);margin-top:14px;line-height:1.65}
+    .modal-close{width:100%;margin-top:20px;padding:14px;background:transparent;border:1px solid var(--ln2);border-radius:12px;color:var(--chalk);font-family:'Jost';font-size:13px;letter-spacing:.1em;cursor:pointer;transition:.2s}
+    .modal-close:hover{border-color:var(--gold);color:var(--gold)}
+
+    .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--s2);border:1px solid var(--gold-md);border-radius:12px;padding:12px 20px;font-size:13px;color:var(--chalk);opacity:0;pointer-events:none;transition:.32s var(--ease);z-index:500;white-space:nowrap;display:flex;align-items:center;gap:9px}
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+    .success{text-align:center;padding:36px 0}
+    .s-icon{width:76px;height:76px;border-radius:50%;background:rgba(76,175,107,.1);border:2px solid rgba(76,175,107,.35);display:flex;align-items:center;justify-content:center;font-size:30px;color:var(--ok);margin:0 auto 22px;animation:pop .45s var(--ease)}
+    @keyframes pop{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+    .s-title{font-family:'Libre Baskerville',serif;font-size:22px;margin-bottom:9px}
+    .s-sub{font-size:14px;color:var(--ash);line-height:1.7;margin-bottom:28px}
+    .s-detail{background:var(--gold-lo);border:1px solid var(--gold-md);border-radius:var(--r);padding:18px 20px;text-align:left;font-size:13px;line-height:2;margin-bottom:24px}
+    .s-detail strong{color:var(--gold)}
+    .btn-novo{width:100%;padding:16px;background:transparent;border:1px solid var(--ln2);border-radius:var(--r);color:var(--chalk);font-family:'Jost';font-size:13px;letter-spacing:.1em;cursor:pointer;transition:.2s}
+    .btn-novo:hover{border-color:var(--gold);color:var(--gold)}
+  </style>
+</head>
+<body>
+
+<div class="bg"></div>
+<i class="fa-solid fa-scissors       ico a"></i>
+<i class="fa-solid fa-razor          ico b"></i>
+<i class="fa-solid fa-bottle-droplet ico c"></i>
+<i class="fa-solid fa-hand-sparkles  ico d"></i>
+<i class="fa-solid fa-star           ico e"></i>
+
+<div class="wrap">
+
+  <div class="datetime-bar">
+    <i class="fa-regular fa-calendar"></i>
+    <span id="live-date">—</span>
+    <i class="fa-regular fa-clock" style="margin-left:4px"></i>
+    <span id="live-time">—</span>
+  </div>
+
+  <div class="profile">
+    <div class="avatar-ring">
+      <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=300&q=80" alt="J Souza" onerror="this.style.display='none'">
+    </div>
+    <h1>J Souza Barbearia</h1>
+    <p class="profile-city">Messejana · Fortaleza, CE</p>
+    <div class="status">
+      <span class="dot" id="status-dot"></span>
+      <span id="status-txt">Verificando...</span>
+    </div>
+  </div>
+
+  <!-- HOME -->
+  <div id="v-home" class="view active">
+    <div class="menu-card featured" onclick="goTo('v-barbeiros')">
+      <div class="mc-icon"><i class="fa-solid fa-calendar-check"></i></div>
+      <div class="mc-text">
+        <div class="mc-title">Agendamento Online</div>
+        <div class="mc-sub">Rápido, sem fila, sem ligação</div>
+      </div>
+      <i class="fa-solid fa-chevron-right mc-arrow"></i>
+    </div>
+
+    <a class="menu-card" href="https://wa.me/5585988527870" target="_blank">
+      <div class="mc-icon" style="color:#4caf6b;background:rgba(76,175,107,.1);border-color:rgba(76,175,107,.25)">
+        <i class="fa-brands fa-whatsapp"></i>
+      </div>
+      <div class="mc-text">
+        <div class="mc-title">WhatsApp Oficial</div>
+        <div class="mc-sub">Fale diretamente conosco</div>
+      </div>
+      <i class="fa-solid fa-chevron-right mc-arrow"></i>
+    </a>
+
+    <a class="menu-card" href="https://www.instagram.com/jsousabarbearia/" target="_blank">
+      <div class="mc-icon" style="color:#e1306c;background:rgba(225,48,108,.1);border-color:rgba(225,48,108,.25)">
+        <i class="fa-brands fa-instagram"></i>
+      </div>
+      <div class="mc-text">
+        <div class="mc-title">Instagram</div>
+        <div class="mc-sub">Veja nossos trabalhos</div>
+      </div>
+      <i class="fa-solid fa-chevron-right mc-arrow"></i>
+    </a>
+
+    <a class="menu-card" href="https://www.google.com/maps/search/J+Souza+Barbearia+Messejana" target="_blank">
+      <div class="mc-icon" style="color:#ea4335;background:rgba(234,67,53,.1);border-color:rgba(234,67,53,.25)">
+        <i class="fa-solid fa-location-dot"></i>
+      </div>
+      <div class="mc-text">
+        <div class="mc-title">Nossa Localização</div>
+        <div class="mc-sub">Messejana, Fortaleza</div>
+      </div>
+      <i class="fa-solid fa-chevron-right mc-arrow"></i>
+    </a>
+
+    <div class="menu-card" onclick="openModal()">
+      <div class="mc-icon"><i class="fa-solid fa-list-ul"></i></div>
+      <div class="mc-text">
+        <div class="mc-title">Catálogo de Serviços</div>
+        <div class="mc-sub">Preços e duração</div>
+      </div>
+      <i class="fa-solid fa-chevron-right mc-arrow"></i>
+    </div>
+
+    <div class="cancel-section">
+      <div class="sec" style="margin-top:14px">Já agendou?</div>
+      <button class="btn-cancel-ag" onclick="openCancelModal()">
+        <i class="fa-solid fa-calendar-xmark"></i> Cancelar Agendamento
+      </button>
+    </div>
+  </div>
+
+  <!-- BARBEIROS -->
+  <div id="v-barbeiros" class="view">
+    <button class="back" onclick="goTo('v-home')"><i class="fa-solid fa-arrow-left"></i> Início</button>
+    <div class="sec">Escolha seu barbeiro</div>
+    <div id="blist"></div>
+  </div>
+
+  <!-- AGENDAR -->
+  <div id="v-agendar" class="view">
+    <button class="back" onclick="goTo('v-barbeiros')"><i class="fa-solid fa-arrow-left"></i> Trocar barbeiro</button>
+    <div class="sec" id="agendar-sec">Agendando com —</div>
+
+    <label class="flabel">Seu nome</label>
+    <input id="inp-nome" type="text" class="finput" placeholder="Como podemos te chamar?">
+
+    <div class="sec">Serviço</div>
+    <div id="svc-list"></div>
+
+    <div class="sec" style="margin-top:6px">Horário disponível</div>
+    <div class="slots" id="slots-grid"></div>
+
+    <div class="resumo">
+      <div class="resumo-head">Resumo</div>
+      <div class="resumo-grid">
+        <div><div class="rkey">Barbeiro</div><div class="rval empty" id="r-b">—</div></div>
+        <div><div class="rkey">Horário</div><div class="rval empty" id="r-h">—</div></div>
+        <div><div class="rkey">Serviço</div><div class="rval empty" id="r-s">—</div></div>
+        <div><div class="rkey">Valor</div><div class="rval empty" id="r-v">—</div></div>
+      </div>
+      <div class="taxa-note" id="taxa-note">
+        <i class="fa-solid fa-circle-info"></i>
+        <span id="taxa-txt"></span>
+      </div>
+    </div>
+
+    <button class="btn-confirm" id="btn-confirm" onclick="confirmar()">
+      <i class="fa-brands fa-whatsapp"></i> Confirmar via WhatsApp
+    </button>
+  </div>
+
+  <!-- SUCESSO -->
+  <div id="v-sucesso" class="view">
+    <div class="success">
+      <div class="s-icon"><i class="fa-solid fa-check"></i></div>
+      <h2 class="s-title">Solicitação enviada!</h2>
+      <p class="s-sub">Você foi direcionado ao WhatsApp.<br>Aguarde a confirmação do barbeiro.</p>
+      <div class="s-detail" id="s-detail"></div>
+      <button class="btn-novo" onclick="novoAg()">
+        <i class="fa-solid fa-plus" style="margin-right:7px"></i>Novo agendamento
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<!-- MODAL CATÁLOGO -->
+<div class="modal" id="modal" onclick="closeModal(event)">
+  <div class="modal-box">
+    <h2>Catálogo de serviços</h2>
+    <div class="mrow"><span>Corte Navalhado</span><span class="mprice">R$ 30</span></div>
+    <div class="mrow"><span>Corte Social</span><span class="mprice">R$ 30</span></div>
+    <div class="mrow"><span>Corte Kids</span><span class="mprice">R$ 25</span></div>
+    <div class="mrow"><span>Barba + Hidratação</span><span class="mprice">R$ 25</span></div>
+    <div class="mrow"><span>Desenho simples</span><span class="mprice">+ R$ 5</span></div>
+    <div class="mrow"><span>Desenho elaborado</span><span class="mprice">+ R$ 10</span></div>
+    <div class="mnote">
+      <i class="fa-solid fa-triangle-exclamation" style="color:var(--gold);margin-right:6px"></i>
+      <strong>Qui, Sex, Sáb e Dom:</strong> acréscimo de R$ 5,00 em todos os serviços.
+    </div>
+    <button class="modal-close" onclick="closeModal()">Fechar</button>
+  </div>
+</div>
+
+<!-- MODAL CANCELAMENTO -->
+<div class="modal" id="modal-cancel" onclick="closeCancelModal(event)">
+  <div class="modal-cancel-box">
+    <h2><i class="fa-solid fa-calendar-xmark" style="margin-right:9px;font-size:17px"></i>Cancelar Agendamento</h2>
+    <p>Preencha os dados do seu agendamento para notificar o barbeiro via WhatsApp.</p>
+
+    <div class="cancel-field">
+      <label class="flabel">Seu nome</label>
+      <input id="c-nome" type="text" class="finput" placeholder="Seu nome" style="margin-bottom:0">
+    </div>
+    <div class="cancel-field" style="margin-top:14px">
+      <label class="flabel">Barbeiro</label>
+      <select id="c-barber" class="finput" style="margin-bottom:0;cursor:pointer;appearance:none">
+        <option value="">Selecione o barbeiro...</option>
+        <option value="Iarley">Iarley</option>
+        <option value="Gabriel">Gabriel</option>
+        <option value="Josué">Josué</option>
+      </select>
+    </div>
+    <div class="cancel-field" style="margin-top:14px">
+      <label class="flabel">Horário marcado</label>
+      <select id="c-slot" class="finput" style="margin-bottom:0;cursor:pointer;appearance:none">
+        <option value="">Selecione o horário...</option>
+        <option>09:00</option><option>10:00</option><option>11:00</option>
+        <option>12:00</option><option>14:00</option><option>15:00</option>
+        <option>16:00</option><option>17:00</option><option>18:00</option><option>19:00</option>
+      </select>
+    </div>
+    <div class="cancel-field" style="margin-top:14px">
+      <label class="flabel">Motivo (opcional)</label>
+      <input id="c-motivo" type="text" class="finput" placeholder="Ex: imprevisto, reagendar..." style="margin-bottom:0">
+    </div>
+
+    <div style="margin-top:22px">
+      <button class="btn-confirm-cancel" onclick="enviarCancelamento()">
+        <i class="fa-brands fa-whatsapp"></i> Notificar via WhatsApp
+      </button>
+      <button class="btn-back-cancel" onclick="closeCancelModal()">Voltar</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <i class="fa-solid fa-circle-exclamation" style="color:var(--gold)"></i>
+  <span id="toast-msg"></span>
+</div>
+
+<script>
+const WA = "5585988527870";
+
+const BARBERS = [
+  { id:"iarley",  name:"Iarley",  spec:"Degradê, Navalhado & Barba",
+    photo:"https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&q=80",
+    svcs:[{n:"Corte Navalhado",p:30,dur:"35 min"},{n:"Corte Social",p:30,dur:"25 min"},{n:"Barba + Hidratação",p:25,dur:"30 min"}]},
+  { id:"gabriel", name:"Gabriel", spec:"Corte Clássico & Visagismo",
+    photo:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80",
+    svcs:[{n:"Corte Navalhado",p:30,dur:"35 min"},{n:"Corte Social",p:30,dur:"25 min"},{n:"Barba + Hidratação",p:25,dur:"30 min"}]},
+  { id:"josue",   name:"Josué",   spec:"Corte Kids & Barba Clássica",
+    photo:"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&q=80",
+    svcs:[{n:"Corte Social",p:30,dur:"25 min"},{n:"Corte Kids",p:25,dur:"20 min"},{n:"Barba + Hidratação",p:25,dur:"30 min"}]},
+];
+
+const ALL_SLOTS = ["09:00","10:00","11:00","12:00","14:00","15:00","16:00","17:00","18:00","19:00"];
+
+const dow  = new Date().getDay();
+const TAXA = (dow === 0 || dow >= 4) ? 5 : 0;
+
+const busy = (id,s) => sessionStorage.getItem(`b_${id}_${s}`) === "1";
+const lock  = (id,s) => sessionStorage.setItem(`b_${id}_${s}`, "1");
+
+let S = { barber:null, svc:null, slot:null };
+
+/* DATA / HORA / STATUS */
+const DIAS_PT  = ["Domingo","Segunda-feira","Terça-feira","Quarta-feira","Quinta-feira","Sexta-feira","Sábado"];
+const MESES_PT = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+
+function isOpen(now) {
+  const d = now.getDay();
+  const mins = now.getHours() * 60 + now.getMinutes();
+  if (d === 0) return false;
+  return mins >= 540 && mins < 1140;
+}
+
+function updateDatetime() {
+  const now = new Date();
+  const d   = now.getDay();
+  const dia = now.getDate();
+  const mes = MESES_PT[now.getMonth()];
+  const hh  = String(now.getHours()).padStart(2,'0');
+  const mm  = String(now.getMinutes()).padStart(2,'0');
+  const ss  = String(now.getSeconds()).padStart(2,'0');
+
+  document.getElementById('live-date').textContent = `${DIAS_PT[d]}, ${dia} de ${mes}`;
+  document.getElementById('live-time').textContent = `${hh}:${mm}:${ss}`;
+
+  const dot = document.getElementById('status-dot');
+  const txt = document.getElementById('status-txt');
+  if (isOpen(now)) {
+    dot.className = 'dot';
+    txt.textContent = 'Aberto agora · Seg–Sáb 9h–19h';
+  } else {
+    dot.className = 'dot closed';
+    let msg = 'Fechado agora';
+    if (d === 0) msg = 'Fechado · Abre segunda às 9h';
+    else if (d === 6 && now.getHours() >= 19) msg = 'Fechado · Abre segunda às 9h';
+    else if (now.getHours() < 9) msg = 'Fechado · Abre hoje às 9h';
+    else msg = 'Fechado · Abre amanhã às 9h';
+    txt.textContent = msg;
+  }
+}
+
+updateDatetime();
+setInterval(updateDatetime, 1000);
+
+/* CANCELAMENTO */
+function openCancelModal() {
+  document.getElementById('modal-cancel').classList.add('open');
+}
+function closeCancelModal(e) {
+  if (!e || e.target === document.getElementById('modal-cancel'))
+    document.getElementById('modal-cancel').classList.remove('open');
+}
+function enviarCancelamento() {
+  const nome   = document.getElementById('c-nome').value.trim();
+  const barber = document.getElementById('c-barber').value;
+  const slot   = document.getElementById('c-slot').value;
+  const motivo = document.getElementById('c-motivo').value.trim();
+
+  if (nome.length < 2) return toast('Informe seu nome para continuar.');
+  if (!barber)         return toast('Selecione o barbeiro.');
+  if (!slot)           return toast('Informe o horário marcado.');
+
+  const motivoTxt = motivo ? `\n❗ *Motivo:* ${motivo}` : '';
+  const msg =
+    `❌ *CANCELAMENTO — J Souza Barbearia*\n\n` +
+    `👤 *Cliente:* ${nome}\n` +
+    `👨‍🦱 *Barbeiro:* ${barber}\n` +
+    `⏰ *Horário cancelado:* ${slot}` +
+    `${motivoTxt}\n\n` +
+    `_Por favor, libere o horário na agenda._`;
+
+  closeCancelModal();
+  setTimeout(()=>{
+    window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
+    document.getElementById('c-nome').value   = '';
+    document.getElementById('c-barber').value = '';
+    document.getElementById('c-slot').value   = '';
+    document.getElementById('c-motivo').value = '';
+    toast('Cancelamento enviado ao barbeiro! ✓');
+  }, 300);
+}
+
+/* LÓGICA ORIGINAL */
+function goTo(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function buildBarbers(){
+  const el = document.getElementById('blist');
+  el.innerHTML = '';
+  BARBERS.forEach(b=>{
+    const free = ALL_SLOTS.filter(s=>!busy(b.id,s)).length;
+    const avHtml = free > 0
+      ? `<div class="bavail ok">${free} horário${free>1?'s':''} livre${free>1?'s':''}</div>`
+      : `<div class="bavail none">Sem horários disponíveis</div>`;
+    const card = document.createElement('div');
+    card.className = 'barber-card';
+    card.innerHTML = `
+      <div class="bphoto">
+        <img src="${b.photo}" alt="${b.name}"
+          onerror="this.parentElement.innerHTML='<div class=bphoto-init>${b.name[0]}</div>'">
+      </div>
+      <div class="binfo">
+        <div class="bname">${b.name}</div>
+        <div class="bspec">${b.spec}</div>
+        ${avHtml}
+      </div>
+      <i class="fa-solid fa-chevron-right barrow"></i>`;
+    card.addEventListener('click',()=>selectBarber(b));
+    el.appendChild(card);
+  });
+}
+
+function selectBarber(b){
+  S = {barber:b,svc:null,slot:null};
+  document.getElementById('agendar-sec').textContent = `Agendando com ${b.name}`;
+  buildSvcs(b); buildSlots(b); renderResumo();
+  goTo('v-agendar');
+}
+
+function buildSvcs(b){
+  const el = document.getElementById('svc-list');
+  el.innerHTML='';
+  b.svcs.forEach(s=>{
+    const total = s.p+TAXA;
+    const div = document.createElement('div');
+    div.className='svc';
+    div.innerHTML=`
+      <div class="sradio"></div>
+      <div class="sbody">
+        <div class="sname">${s.n}</div>
+        <div class="sdur"><i class="fa-regular fa-clock" style="margin-right:4px;font-size:10px"></i>${s.dur}</div>
+      </div>
+      <div class="sprice">R$ ${total}</div>`;
+    div.addEventListener('click',()=>{
+      document.querySelectorAll('.svc').forEach(i=>i.classList.remove('chosen'));
+      div.classList.add('chosen');
+      S.svc={...s,total}; renderResumo();
+    });
+    el.appendChild(div);
+  });
+}
+
+function buildSlots(b){
+  const grid = document.getElementById('slots-grid');
+  grid.innerHTML='';
+  ALL_SLOTS.forEach(t=>{
+    const occ = busy(b.id,t);
+    const el  = document.createElement('div');
+    el.className='slot'+(occ?' busy':'');
+    el.innerHTML=`<div class="stime">${t}</div><div class="slot-tag">Ocupado</div>`;
+    if(!occ){
+      el.addEventListener('click',()=>{
+        document.querySelectorAll('.slot:not(.busy)').forEach(s=>s.classList.remove('chosen'));
+        el.classList.add('chosen');
+        S.slot=t; renderResumo();
+      });
+    }
+    grid.appendChild(el);
+  });
+}
+
+function renderResumo(){
+  const set=(id,val,extra='')=>{
+    const e=document.getElementById(id);
+    e.textContent=val||'—';
+    e.className='rval'+(val?` ${extra}`:'empty');
+  };
+  set('r-b',S.barber?.name);
+  set('r-h',S.slot);
+  set('r-s',S.svc?.n);
+  set('r-v',S.svc?`R$ ${S.svc.total}`:null,'price');
+  const note=document.getElementById('taxa-note');
+  if(TAXA>0){note.classList.add('show');document.getElementById('taxa-txt').textContent=`Taxa qui–dom: + R$ ${TAXA},00`}
+  else note.classList.remove('show');
+}
+
+function confirmar(){
+  const nome=document.getElementById('inp-nome').value.trim();
+  if(nome.length<2) return toast('Informe seu nome para continuar.');
+  if(!S.svc)        return toast('Selecione um serviço.');
+  if(!S.slot)       return toast('Escolha um horário disponível.');
+  const btn=document.getElementById('btn-confirm');
+  btn.disabled=true;
+  btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i>&nbsp;Abrindo WhatsApp...';
+  const msg=`💈 *AGENDAMENTO — J Souza Barbearia*\n\n👤 *Cliente:* ${nome}\n👨‍🦱 *Barbeiro:* ${S.barber.name}\n✂️ *Serviço:* ${S.svc.n}\n⏰ *Horário:* ${S.slot}\n💰 *Valor:* R$ ${S.svc.total},00\n\n_Pode confirmar a disponibilidade?_`;
+  setTimeout(()=>{
+    window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
+    lock(S.barber.id,S.slot);
+    document.getElementById('s-detail').innerHTML=
+      `<strong>Cliente:</strong> ${nome}<br><strong>Barbeiro:</strong> ${S.barber.name}<br><strong>Serviço:</strong> ${S.svc.n}<br><strong>Horário:</strong> ${S.slot}<br><strong>Valor:</strong> R$ ${S.svc.total},00`;
+    btn.disabled=false;
+    btn.innerHTML='<i class="fa-brands fa-whatsapp"></i>&nbsp;Confirmar via WhatsApp';
+    goTo('v-sucesso');
+  },900);
+}
+
+function novoAg(){
+  S={barber:null,svc:null,slot:null};
+  document.getElementById('inp-nome').value='';
+  buildBarbers(); goTo('v-home');
+}
+
+function openModal(){document.getElementById('modal').classList.add('open')}
+function closeModal(e){if(!e||e.target===document.getElementById('modal'))document.getElementById('modal').classList.remove('open')}
+
+let _t;
+function toast(msg){
+  const el=document.getElementById('toast');
+  document.getElementById('toast-msg').textContent=msg;
+  el.classList.add('show');clearTimeout(_t);
+  _t=setTimeout(()=>el.classList.remove('show'),3400);
+}
+
+buildBarbers();
+</script>
+</body>
+</html>
